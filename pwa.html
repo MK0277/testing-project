@@ -1,0 +1,101 @@
+<div id="pwa-container">
+  <div id="installAppBox" 
+       style="display:none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+              background: #fff; border-radius: 12px; padding: 12px 20px; 
+              box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 9999; 
+              animation: bounce 2s infinite, glow 1.5s infinite alternate; align-items:center;">
+
+    <!-- Message -->
+    <span id="pwaMessage" style="font-size:16px; margin-right:10px;"></span>
+
+    <!-- Download Button (Android only) -->
+    <button id="installAppBtn" 
+            class="btn btn-warning" 
+            style="font-size:16px; padding:8px 16px; border-radius:8px; display:none;">
+      📲 Install App
+    </button>
+
+    <!-- Close Button -->
+    <span id="closeInstallBox" 
+          style="margin-left:10px; cursor:pointer; font-size:18px; font-weight:bold; color:#888;">
+      ✖
+    </span>
+  </div>
+</div>
+
+<style>
+  @keyframes bounce {
+    0%,20%,50%,80%,100% { transform: translate(-50%,0); }
+    40% { transform: translate(-50%,-6px); }
+    60% { transform: translate(-50%,-3px); }
+  }
+  @keyframes glow {
+    from { box-shadow: 0 0 5px #ffc107, 0 0 10px #ffc107, 0 0 15px #ff9800; }
+    to   { box-shadow: 0 0 10px #ff9800, 0 0 20px #ffc107, 0 0 25px #ff5722; }
+  }
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; visibility: hidden; }
+  }
+  #installAppBox.hide { animation: fadeOut 1s forwards; }
+</style>
+
+<script>
+  let deferredPrompt;
+  const installBox = document.getElementById("installAppBox");
+  const installBtn = document.getElementById("installAppBtn");
+  const closeBtn = document.getElementById("closeInstallBox");
+  const message = document.getElementById("pwaMessage");
+
+  // Detect iOS Safari
+  function isIos() {
+    return /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+  }
+  function isInStandaloneMode() {
+    return ("standalone" in window.navigator) && window.navigator.standalone;
+  }
+
+  // Android PWA prompt
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    message.innerHTML = "📲 Install our app for better experience!";
+    installBtn.style.display = "inline-block";
+    showInstallBox();
+  });
+
+  // Handle install button click (Android)
+  installBtn.addEventListener("click", async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const choiceResult = await deferredPrompt.userChoice;
+      if (choiceResult.outcome === "accepted") hideInstallBox();
+      deferredPrompt = null;
+    }
+  });
+
+  // iOS Safari custom banner
+  if (isIos() && !isInStandaloneMode()) {
+    message.innerHTML = "📱 To install: Tap <b>Share</b> → <b>Add to Home Screen</b>";
+    showInstallBox();
+  }
+
+  // Close button
+  closeBtn.addEventListener("click", () => hideInstallBox());
+
+  // Auto-hide after 20s
+  function showInstallBox() {
+    installBox.style.display = "flex";
+    setTimeout(() => hideInstallBox(), 20000);
+  }
+
+  function hideInstallBox() {
+    if (installBox.style.display !== "none") {
+      installBox.classList.add("hide");
+      setTimeout(() => { installBox.style.display = "none"; }, 1000);
+    }
+  }
+
+  // Hide if already installed
+  window.addEventListener("appinstalled", () => hideInstallBox());
+</script>

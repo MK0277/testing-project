@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.a1training.in/</loc>
+    <lastmod>2025-08-24</lastmod>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Course Pages -->
+  <url>
+    <loc>https://www.a1training.in/courses/full-stack-development</loc>
+    <lastmod>2025-08-24</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.a1training.in/courses/devops-aws-cloud</loc>
+    <lastmod>2025-08-24</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.a1training.in/courses/cybersecurity</loc>
+    <lastmod>2025-08-24</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.a1training.in/courses/ai-machine-learning</loc>
+    <lastmod>2025-08-24</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.a1training.in/courses/python-programming</loc>
+    <lastmod>2025-08-24</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.a1training.in/courses/java</loc>
+    <lastmod>2025-08-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.a1training.in/courses/c-cpp</loc>
+    <lastmod>2025-08-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.a1training.in/courses/digital-marketing</loc>
+    <lastmod>2025-08-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Updated Junior Geeks -->
+  <url>
+    <loc>https://www.a1training.in/courses/junior-geeks</loc>
+    <lastmod>2025-08-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- New: Computer Science for 11th and 12th -->
+  <url>
+    <loc>https://www.a1training.in/courses/computer-science-11-12</loc>
+    <lastmod>2025-08-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
