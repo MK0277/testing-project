@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A1 Training Institute – Python, AI/ML, Cloud & DevOps</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <section class="hero-premium dark py-5">
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Left -->
+        <div class="hero-left">
+          <h1 class="hero-title">Master <span class="pill">Python</span> — Career-Ready Training</h1>
+          <p class="hero-sub">Hands-on Python for <strong>AI/ML</strong>, <strong>Web</strong>, <strong>Cloud</strong> &amp; <strong>Automation</strong>.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-brand btn-lg" href="#modules">🚀 Start Learning</a>
+            <a class="btn btn-outline-light btn-lg ms-3" href="#modules">See Modules</a>
+          </div>
+        </div>
+
+        <!-- Right: Simulator -->
+        <div class="hero-right">
+          <div class="code-sim">
+            <select id="example-selector" onchange="loadExample()" class="example-select">
+              <option value="fibonacci">🐍 Fibonacci Sequence</option>
+              <option value="factorial">📐 Factorial</option>
+              <option value="hello">👋 Hello World</option>
+              <option value="listcomp">📊 List Comprehension</option>
+            </select>
+
+            <textarea id="code-editor" spellcheck="false"></textarea>
+
+            <div class="sim-buttons">
+              <button class="run-btn" onclick="runCode()">▶ Run Code</button>
+              <button class="copy-btn" onclick="copyCode()">📋 Copy Code</button>
+            </div>
+
+            <pre id="output" class="output-box">Output will appear here...</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider Hero → Why Python -->
+  <div class="section-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150">
+      <path fill="#0f172a" d="M0,64L1440,128L1440,0L0,0Z"></path>
+    </svg>
+  </div>
+
+  <!-- WHY PYTHON -->
+  <section id="why-python" class="why-python py-5">
+    <div class="container text-center">
+      <h2 class="section-title">Why Python Matters</h2>
+      <p class="section-lead">Python powers AI research, automation, fintech, and cloud-native apps.</p>
+    </div>
+  </section>
+
+  <!-- Divider Why Python → Choose Us -->
+  <div class="section-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150">
+      <path fill="#1e293b" d="M0,64L1440,128L1440,0L0,0Z"></path>
+    </svg>
+  </div>
+
+  <!-- WHY CHOOSE US -->
+  <section id="choose-us" class="choose-us py-5">
+    <div class="container">
+      <h2 class="section-title text-center">🌟 Why Choose A1 Training Institute?</h2>
+      <p class="section-lead text-center">Our mission is simple: <strong>every student should get a job</strong>.</p>
+      <!-- 3 cards -->
+    </div>
+  </section>
+
+  <!-- Divider Choose Us → Modules -->
+  <div class="section-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150">
+      <path fill="#f9fafb" d="M0,64L1440,128L1440,0L0,0Z"></path>
+    </svg>
+  </div>
+
+  <!-- MODULES -->
+  <section id="modules" class="modules-section py-5">
+    <div class="container text-center">
+      <h2 class="section-title">Python Course Modules</h2>
+      <p class="section-lead">Learn step-by-step: Basics → OOP → Data Science → AI/ML → Cloud.</p>
+    </div>
+  </section>
+
+  <!-- Divider Modules → Career -->
+  <div class="section-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150">
+      <path fill="#fafafa" d="M0,64L1440,128L1440,0L0,0Z"></path>
+    </svg>
+  </div>
+
+  <!-- CAREER OUTCOMES -->
+  <section id="career" class="career-section py-5">
+    <div class="container text-center">
+      <h2 class="section-title">Outcomes / Career Path</h2>
+      <p class="section-lead">After Python you can become: Data Scientist, AI Engineer, Web Developer, Cloud Engineer.</p>
+    </div>
+  </section>
+
+  <!-- Divider Career → Locations -->
+  <div class="section-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150">
+      <path fill="#0f172a" d="M0,64L1440,128L1440,0L0,0Z"></path>
+    </svg>
+  </div>
+
+  <!-- LOCATIONS -->
+  <section id="locations" class="locations-section py-5">
+    <div class="container text-center">
+      <h2 class="section-title">📍 Our Training Locations</h2>
+      <p class="section-lead">Greater Noida, Noida, Gurugram, Delhi NCR, Bangalore, Hyderabad, Pune, Mumbai, USA, UAE, Dubai</p>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+# Allow all crawlers full access
+User-agent: *
+Allow: /assets/favicon/favicon.ico
+Allow: /assets/favicon/favicon-32x32.png
+Allow: /assets/favicon/favicon-96x96.png
+Allow: /assets/favicon/apple-touch-icon.png
+Disallow:
+
+# Optional: Block admin or backend folders if they exist
+Disallow: /admin/
+Disallow: /login/
+Disallow: /backend/
+Disallow: /cgi-bin/
+
+# Sitemap location
+Sitemap: https://www.a1training.in/sitemap.xml
