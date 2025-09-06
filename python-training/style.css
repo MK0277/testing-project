@@ -432,4 +432,26 @@
   color: #9ca3af;
 }
 
+/* whatsapp */
+        .whatsapp-float {
+  position: fixed;
+  bottom: 80px;   /* above scroll-to-top button */
+  right: 20px;
+  background: #25d366;
+  color: white;
+  font-size: 28px;
+  padding: 12px 14px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  color: white;
+}
 

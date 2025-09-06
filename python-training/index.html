@@ -135,7 +135,7 @@
               Courses
             </a>
             <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
-              <li><a class="dropdown-item" href="/python-training/">Python</a></li>
+              <!-- <li><a class="dropdown-item" href="/python-training/">Python</a></li> -->
               <li><a class="dropdown-item" href="/devops-training/">DevOps</a></li>
               <li><a class="dropdown-item" href="/ai-ml-training/">AI/ML</a></li>
               <li><a class="dropdown-item" href="/full-stack-training/">Full Stack</a></li>
@@ -147,12 +147,91 @@
           </li>
 
           <li class="nav-item ms-lg-3">
-            <a class="btn btn-brand px-4 py-2 rounded-pill" href="#enroll">Enroll Now</a>
+            <a class="btn btn-brand px-4 py-2 rounded-pill" href="#enroll" data-bs-toggle="modal" data-bs-target="#enrollModal">Enroll Now</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+<!-- enroll form -->
+ <!-- Enroll Now Modal -->
+<div class="modal fade" id="enrollModal" tabindex="-1" aria-labelledby="enrollModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="enrollModalLabel">🚀 Enroll Now - Python Training</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <form id="enrollForm" class="row g-3">
+          <div class="col-md-6">
+            <input type="text" id="name" name="name" class="form-control" placeholder="Full Name" required>
+          </div>
+          <div class="col-md-6">
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email Address" required>
+          </div>
+          <div class="col-md-6">
+            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Phone Number" required>
+          </div>
+          <div class="col-12">
+            <textarea id="message" name="message" class="form-control" placeholder="Message (optional)" rows="3"></textarea>
+          </div>
+
+          <!-- Hidden fixed course -->
+          <input type="hidden" id="course" name="course" value="Python">
+
+          <div class="col-12 text-center">
+            <button type="submit" class="btn btn-success btn-lg">Submit</button>
+          </div>
+        </form>
+
+        <p id="formMsg" class="text-center mt-3"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbwvjb1T4LfOSqBtfKxulFUzYzNxRnQ42usOt_RKBqndVvbZ6Q6DeePBxOMPwY9TJEtpnw/exec"; // replace with your deployed Apps Script URL
+  const form = document.getElementById("enrollForm");
+  const msg = document.getElementById("formMsg");
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const phone = formData.get("phone");
+    const course = formData.get("course");
+    const message = formData.get("message");
+
+    // 1️⃣ Save to Google Sheet + Send Email via Apps Script
+    fetch(scriptURL, { method: "POST", body: formData })
+      .then(response => {
+        msg.textContent = "✅ Enrollment saved & email sent! Redirecting to WhatsApp...";
+
+        // 2️⃣ Redirect to WhatsApp
+        const whatsappNumber = "918368979712"; // your WhatsApp number
+        const text = `📢 New Enrollment:%0A
+🧑 Name: ${name}%0A
+📧 Email: ${email}%0A
+📞 Phone: ${phone}%0A
+📘 Course: ${course}%0A
+💬 Message: ${message}`;
+
+        window.open(`https://wa.me/${whatsappNumber}?text=${text}`, "_blank");
+
+        form.reset();
+      })
+      .catch(error => {
+        msg.textContent = "⚠️ Error saving to Google Sheet!";
+        console.error("Error!", error.message);
+      });
+  });
+</script>
 
 
 <!-- ====== HERO (Dark + Interactive Python) ====== -->
@@ -288,7 +367,7 @@ print(squares)`
 </script>
 
 <!-- ====== OUR LOCATIONS ====== -->
-<section class="locations-section py-5">
+<section class="locations-section py-5" id="locations">
   <div class="container text-center">
     <h2 class="section-title mb-4 text-dark">📍 Our Training Locations</h2>
     <p class="section-sub mb-5">
@@ -297,16 +376,26 @@ print(squares)`
     </p>
 
     <div class="locations-grid">
-      <a href="/python-training-in-greater-noida/" class="loc-card">Greater Noida</a>
-      <a href="/python-training-in-noida/" class="loc-card">Noida</a>
+      <a href="/python-training/greater-noida/" class="loc-card">Greater Noida</a>
+      <a href="/python-training/noida/" class="loc-card">Noida</a>
       <a href="/python-training-in-gurugram/" class="loc-card">Gurugram</a>
-      <a href="/python-training-in-delhi-ncr/" class="loc-card">Delhi NCR</a>
+      <a href="/python-training-in-delhi-ncr/" class="loc-card">Delhi/NCR</a>
       <a href="/python-training-in-bangalore/" class="loc-card">Bangalore</a>
       <a href="/python-training-in-hyderabad/" class="loc-card">Hyderabad</a>
       <a href="/python-training-in-pune/" class="loc-card">Pune</a>
       <a href="/python-training-in-mumbai/" class="loc-card">Mumbai</a>
+      <a href="/python-training-in-usa/" class="loc-card">Coimbatore</a>
+      <a href="/python-training-in-usa/" class="loc-card">Chennai</a>
+      <a href="/python-training-in-usa/" class="loc-card">Kerala</a>
+      <a href="/python-training-in-usa/" class="loc-card">Kolkata</a>
+      <a href="/python-training-in-usa/" class="loc-card">Chandigarh</a>
+      <a href="/python-training-in-usa/" class="loc-card">Ahmedabad</a>
+      <a href="/python-training-in-usa/" class="loc-card">Odissa</a>
+      <a href="/python-training-in-usa/" class="loc-card">UK</a>
       <a href="/python-training-in-usa/" class="loc-card">USA</a>
-      <a href="/python-training-in-uae/" class="loc-card">UAE</a>
+      <a href="/python-training-in-usa/" class="loc-card">Australia</a>
+      <a href="/python-training-in-usa/" class="loc-card">Germany</a>
+      <a href="/python-training-in-uae/" class="loc-card">Qatar</a>
       <a href="/python-training-in-dubai/" class="loc-card">Dubai</a>
     </div>
   </div>
@@ -358,7 +447,7 @@ function runCode() {
 </script>
 
   <!-- WHY PYTHON -->
-<section class="why-python py-5">
+<section class="why-python py-5" id="why-python">
   <div class="container">
     <h2 class="section-title text-center mb-3">🚀 Why Python Matters in the Modern World</h2>
     <p class="section-lead text-center mb-5">
@@ -413,7 +502,7 @@ function runCode() {
 </section>
 
   <!-- WHY A1 -->
-<section class="choose-us">
+<section class="choose-us" id="choose-us">
   <div class="container">
     <h2 class="section-title text-center">🌟 Why Choose A1 Training Institute?</h2>
     <p class="section-lead text-center">
@@ -448,6 +537,7 @@ function runCode() {
     </div>
   </div>
 </section>
+
 
   <!-- COURSE MODULES (Beautiful Cards) -->
   <section style="background:linear-gradient(180deg,#f9fafb,#eef3f7)" id="modules">
@@ -513,7 +603,7 @@ function runCode() {
   </section>
 
   <!-- CAREER OUTCOMES -->
-  <section style="background:linear-gradient(180deg,#fafafa,#f1f5f9);">
+  <section style="background:linear-gradient(180deg,#fafafa,#f1f5f9);" id="career">
     <div class="container text-center">
       <h2 class="section-title text-dark">Career Outcomes After Python Training</h2>
       <p class="section-lead text-dark">Target roles across NCR, India’s tech hubs & international markets.</p>
@@ -549,7 +639,19 @@ function runCode() {
       </div>
     </div>
   </section>
-
+<!-- STUDENT REVIEWS -->
+<section id="reviews" class="py-5" style="background:#f1f5f9;">
+  <div class="container">
+    <h2 class="text-center mb-4" data-aos="fade-up">What Our Students Say</h2>
+    <iframe src='https://widgets.sociablekit.com/google-reviews/iframe/25592681' frameborder='0' width='100%' height='400px'></iframe>
+  <div class="text-center mt-3">
+      <a href="https://www.google.com/search?q=A1+Training+Institute+Greater+Noida+reviews" 
+         target="_blank" class="btn btn-brand btn-lg">
+         ⭐ See All Reviews on Google
+      </a>
+    </div>
+  </div>
+</section>
   <!-- ENROLL CTA -->
   <section id="enroll" class="text-center" style="background:linear-gradient(135deg,#0f172a,#1e293b,#0ea5e9);">
     <div class="container text-white">
@@ -559,6 +661,107 @@ function runCode() {
       <a href="mailto:info@a1training.in" class="btn btn-brand btn-lg mt-2">Contact Us</a>
     </div>
   </section>
+  <!-- ===== FAQ SECTION ===== -->
+<section id="faq" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+    <div class="accordion" id="faqAccordion">
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            What is the duration of the Python training at A1 Training Institute?
+          </button>
+        </h2>
+        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            The Python course duration ranges from <strong>2 to 6 months</strong> depending on the track you choose—beginner, advanced, or job-oriented with AI/ML and Data Science. Flexible weekend and fast-track batches are also available.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            Do you provide online Python training as well?
+          </button>
+        </h2>
+        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes, A1 Training Institute offers <strong>both classroom and live online Python classes</strong>. Students from India, USA, UAE, and Dubai can join virtually with the same interactive, hands-on experience.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+            Will I get a certificate after completing the Python course?
+          </button>
+        </h2>
+        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Absolutely ✅. Every student receives an <strong>industry-recognized Python training certificate</strong> from A1 Training Institute, which can be showcased on resumes, LinkedIn, and during job interviews.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+            Does the Python training include placement support?
+          </button>
+        </h2>
+        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes, we provide <strong>100% placement assistance</strong> including resume building, interview preparation, mock interviews, and direct referrals to hiring partners across Delhi NCR, Bangalore, Hyderabad, Pune, Mumbai, and abroad.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+            What is the course fee for Python training?
+          </button>
+        </h2>
+        <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            The fees depend on the selected track (Core Python, Data Science, AI/ML, Full Stack, or Cloud). Contact us for detailed <strong>fee structure and current discounts</strong>.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+            Is Python enough to get a job in IT?
+          </button>
+        </h2>
+        <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Yes! Python is one of the <strong>most in-demand skills</strong> in IT. With knowledge of Python plus AI, Data Science, Web Development, or Cloud, you can apply for roles like Python Developer, Data Analyst, AI/ML Engineer, Full Stack Developer, or DevOps Engineer.
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+            Who can join the Python training program?
+          </button>
+        </h2>
+        <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+          <div class="accordion-body">
+            Our Python course is suitable for <strong>college students, IT professionals, beginners in coding, and working employees</strong> who want to switch careers into Data Science, AI, or Software Development.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
   <!-- FOOTER -->
 <!--   <footer>
@@ -575,8 +778,15 @@ function runCode() {
     <!-- Brand / Mission -->
     <div class="footer-col">
       <h3 class="footer-logo">A1 Training Institute</h3>
-      <p>Empowering students & professionals with cutting-edge training in Python, AI/ML, Cloud & DevOps.  
-      <strong>Our goal: every student gets a job.</strong></p>
+      <p style="text-align: justify;">No.1 Training Institute of Delhi / NCR. Corporate‑level programs for
+                        Full
+                        Stack, DevOps & Cloud, Cybersecurity, AI/ML and more. International online batches available.
+                    </p>
+                    <p style="text-align: justify;">
+                        Our placement record is exceptional, with students successfully working in leading IT companies.
+                        We constantly upgrade our training modules to match the ever-evolving IT industry trends, making
+                        our students job-ready from day one.
+                    </p>
     </div>
 
     <!-- Quick Links -->
@@ -593,32 +803,260 @@ function runCode() {
 
     <!-- Contact -->
     <div class="footer-col">
-      <h4>Contact Us</h4>
-      <p>📍 Greater Noida, Delhi NCR, India</p>
-      <p>📞 +91 9876543210</p>
-      <p>✉️ info@a1training.com</p>
+      <h4>Facebook</h4>
+       <!-- Facebook Plugin -->
+                    <div class="fb-page" data-href="https://www.facebook.com/a1projecttraining/" data-tabs="timeline"
+                        data-width="500" data-height="350" data-small-header="false" data-adapt-container-width="true"
+                        data-hide-cover="false" data-show-facepile="true">
+                    </div>
+
+                    <!-- Facebook SDK -->
+                    <div id="fb-root"></div>
+                    <script async defer crossorigin="anonymous"
+                        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0">
+                        </script>
     </div>
 
     <!-- Social Media -->
     <div class="footer-col">
-      <h4>Follow Us</h4>
-      <div class="footer-social">
-        <a href="#"><span>🌐</span></a>
-        <a href="#"><span>💼</span></a>
-        <a href="#"><span>🐦</span></a>
-        <a href="#"><span>▶</span></a>
-      </div>
+      <h4>Contact</h4>
+
+                    <p class="mb-1"><i class="bi bi-telephone"></i> <a class="footer-link" href="tel:+918368979712">+91
+                            8368979712</a> / <a class="footer-link" href="tel:+916380486914">6380486914</a></p>
+                    <p class="mb-1"><i class="bi bi-envelope"></i> <a class="footer-link"
+                            href="mailto:a1training167@gmail.com">a1training167@gmail.com</a></p>
+                    <p class="mb-1"><i class="bi bi-geo-alt"></i> C‑167, Omicron 1, 6% Abadi, Greater Noida 201310</p>
+                    <p class="mb-3"><i class="bi bi-geo"></i> Earthcon Sanskriti, Sector 1, Greater Noida West</p>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.4440474098296!2d77.56183207495059!3d28.46617099161693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cc1ace1d0021d%3A0x4a817521c4ed4de2!2sA1%20Training(Only%20Coding)-Best%20software%20training%20institute%20in%20Delhi%2Cnoida%20and%20greater%20noida!5e0!3m2!1sen!2sin!4v1756009348809!5m2!1sen!2sin"
+                        width="100%" height="auto" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="d-flex gap-3">
+                        <a class="footer-link" href="https://www.facebook.com/a1training" aria-label="Facebook"><i
+                                class="bi bi-facebook"></i></a>
+                        <a class="footer-link" href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a class="footer-link" href="#" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                        <a class="footer-link" href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+                    </div>
+              
     </div>
 
   </div>
 
   <div class="footer-bottom text-center">
-    <p>© 2025 A1 Training Institute. All Rights Reserved.</p>
+   <p>© <span id="year"></span> A1 Training Institute. All Rights Reserved.</p>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
   </div>
 </footer>
+
+    <!-- Scroll to Top Button -->
+     <style>
+        #scrollTopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none; /* hidden by default */
+  z-index: 999;
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+     </style>
+<button id="scrollTopBtn" class="btn btn-brand rounded-circle">
+  <i class="bi bi-arrow-up"></i>
+</button>
+<script>
+  const scrollBtn = document.getElementById("scrollTopBtn");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      scrollBtn.style.display = "flex";
+    } else {
+      scrollBtn.style.display = "none";
+    }
+  });
+
+  scrollBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/918368979712" 
+   class="whatsapp-float" 
+   target="_blank" 
+   aria-label="Chat on WhatsApp">
+   <i class="bi bi-whatsapp"></i>
+</a>
 
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<!-- JSON-LD (Schema Markup for FAQs) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the duration of the Python training at A1 Training Institute?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Python course duration ranges from 2 to 6 months depending on the track you choose—beginner, advanced, or job-oriented with AI/ML and Data Science. Flexible weekend and fast-track batches are also available."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you provide online Python training as well?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, A1 Training Institute offers both classroom and live online Python classes. Students from India, USA, UAE, and Dubai can join virtually with the same interactive, hands-on experience."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will I get a certificate after completing the Python course?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every student receives an industry-recognized Python training certificate from A1 Training Institute, which can be showcased on resumes, LinkedIn, and during job interviews."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the Python training include placement support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we provide 100% placement assistance including resume building, interview preparation, mock interviews, and direct referrals to hiring partners across Delhi NCR, Bangalore, Hyderabad, Pune, Mumbai, and abroad."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the course fee for Python training?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The fees depend on the selected track (Core Python, Data Science, AI/ML, Full Stack, or Cloud). Contact us for detailed fee structure and current discounts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Python enough to get a job in IT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes! Python is one of the most in-demand skills in IT. With knowledge of Python plus AI, Data Science, Web Development, or Cloud, you can apply for roles like Python Developer, Data Analyst, AI/ML Engineer, Full Stack Developer, or DevOps Engineer."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who can join the Python training program?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our Python course is suitable for college students, IT professionals, beginners in coding, and working employees who want to switch careers into Data Science, AI, or Software Development."
+      }
+    }
+  ]
+}
+</script>
+<!-- JSON-LD schema markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Python Training",
+  "provider": {
+    "@type": "EducationalOrganization",
+    "name": "A1 Training Institute",
+    "sameAs": "https://www.a1training.in/python-training/"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "bestRating": "5",
+    "ratingCount": "120"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Himanshu Bhati"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "I have learned AWS, DevOps, Python, Terraform, and Jenkins here. As a BA graduate, I was not confident initially, but the way they taught me was awesome. Now I can automate entire processes with ease."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Aman Production"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "It’s a great institute! I learned a lot with the help of supportive teachers. They guided me in Python, Boto3, DevOps, Jenkins, and AWS."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Vipin Rathor"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "I completed Python and AI training at A1 Training. My experience was excellent, and the mentors were highly supportive."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Rudra Dubey"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "I enrolled in the Full Stack Development course. The institute focuses on real projects—I even built a Twitter clone to understand complete product development."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Somil Dixit"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "I joined for Full Stack training and gained practical knowledge by cloning an Amazon-like product end-to-end. It was a great learning journey."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Sani Yadav"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "I did Generative AI, Python, and Machine Learning here. The hands-on learning approach really helped me gain confidence in these technologies."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Pramila Devi"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "I completed DevSecOps training. It was highly practical, and I gained strong hands-on knowledge. Totally recommend A1 Training for Python and DevSecOps."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Salim Khan"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "I learned Python and MySQL here. The trainers explained every topic in depth and even helped me prepare for interviews."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Ganga Devi"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "I joined to learn Python, AWS, DevSecOps, and Generative AI. I started with no knowledge, but their step-by-step guidance made me industry-ready."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Manish Kumar"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "Best institute in Greater Noida for practical learning. Skilled mentors, supportive environment, and career-focused training."
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Miclin Geo"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "I joined for Python training with no coding knowledge. The practical approach and supportive faculty helped me become confident in Python. Best place for beginners!"
+    },
+    {
+      "@type": "Review",
+      "author": {"@type": "Person", "name": "Alina Ahamad"},
+      "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+      "reviewBody": "I did a course in Generative AI and got placed in an MNC. The AI trainer explained complex ML and Deep Learning concepts in a simple way."
+    }
+  ]
+}
+</script>
+
