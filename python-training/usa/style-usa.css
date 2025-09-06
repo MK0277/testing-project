@@ -1,0 +1,237 @@
+body {
+      font-family: "Poppins", Arial, sans-serif;
+      line-height: 1.7;
+      color: #1e293b;
+      background-color: #f9fafb;
+    }
+    h1, h2, h3, h4 { font-weight: 700; color: #0f172a; }
+    p { font-size: 1.05rem; }
+
+    .hero-premium {
+      background: linear-gradient(135deg, #0f172a, #1e293b, #0ea5e9);
+      color: white;
+      text-align: center;
+      padding: 5rem 2rem;
+      border-radius: 0 0 40px 40px;
+    }
+    .hero-premium .pill {
+      background: #38bdf8;
+      padding: 0.2em 0.6em;
+      border-radius: 8px;
+      color: #0f172a;
+    }
+    .btn-brand {
+      background: #0ea5e9;
+      border: none;
+      color: #fff;
+      font-weight: 600;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      transition: 0.3s;
+    }
+    .btn-brand:hover { background: #0284c7; }
+
+    .why-section h5 { color: #0ea5e9; font-weight: 600; margin-top: 1rem; }
+    .why-section p { font-size: 1rem; color: #475569; }
+
+    #modules .list-group-item {
+      border: none;
+      padding: 1rem 1.2rem;
+      margin-bottom: 0.8rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      font-weight: 500;
+    }
+
+    #career .col-md-3 p {
+      background: white;
+      padding: 1.2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+      font-weight: 600;
+      transition: transform 0.3s;
+    }
+    #career .col-md-3 p:hover {
+      transform: translateY(-6px);
+      background: #0ea5e9;
+      color: white;
+    }
+
+    .card {
+      border: none;
+      border-radius: 16px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+    .card img {
+      border: 4px solid #0ea5e9;
+      padding: 2px;
+    }
+
+    footer { border-top: 4px solid #0ea5e9; }
+    footer a { text-decoration: none; }
+
+/* module course css */
+/* Section Background */
+.modules-section {
+  background: linear-gradient(135deg, #1e293b, #0f172a); /* dark blue gradient */
+  color: white;
+}
+
+/* Card Styling */
+.module-card {
+  border-radius: 18px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px;
+}
+.module-card .icon {
+  font-size: 3rem;
+}
+.module-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.35);
+}
+
+/* Gradient Backgrounds for Each Card */
+.gradient-blue {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+.gradient-purple {
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+}
+.gradient-green {
+  background: linear-gradient(135deg, #10b981, #047857);
+}
+.gradient-orange {
+  background: linear-gradient(135deg, #f97316, #c2410c);
+}
+.gradient-red {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+}
+.gradient-teal {
+  background: linear-gradient(135deg, #14b8a6, #0f766e);
+}
+
+/* outcomes */
+/* Section Background (different from modules) */
+.career-section {
+  background: linear-gradient(135deg, #0f172a, #1e3a8a); /* dark navy to blue */
+}
+
+/* Card Styling */
+.career-card {
+  border-radius: 18px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px;
+}
+.career-card .icon {
+  font-size: 2.5rem;
+}
+.career-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+.career-card h5 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.career-card p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Gradient Colors */
+.gradient-blue {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+.gradient-purple {
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+}
+.gradient-green {
+  background: linear-gradient(135deg, #10b981, #047857);
+}
+.gradient-orange {
+  background: linear-gradient(135deg, #f97316, #c2410c);
+}
+
+/* why choose */
+/* Section Background (Dark + Stylish) */
+.why-section {
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  color: white;
+}
+
+/* Card Styling */
+.why-card {
+  border-radius: 18px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px;
+}
+.why-card .fs-1 {
+  font-size: 2.5rem;
+}
+.why-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+.why-card h5 {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.why-card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Gradient Colors for Cards */
+.gradient-blue {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+.gradient-purple {
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+}
+.gradient-green {
+  background: linear-gradient(135deg, #10b981, #047857);
+}
+.gradient-orange {
+  background: linear-gradient(135deg, #f97316, #c2410c);
+}
+.gradient-red {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+}
+.gradient-teal {
+  background: linear-gradient(135deg, #14b8a6, #0f766e);
+}
+
+/* hero */
+/* SEO Link inside Hero */
+.highlight-link {
+  background: linear-gradient(90deg, #facc15, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+.highlight-link:hover {
+  opacity: 0.8;
+}
+
+/* footer */
+p strong {
+  color: #facc15; /* highlight label */
+}
+
+p a.text-light {
+  text-decoration: none;
+  margin: 0 6px;
+  font-weight: 500;
+}
+p a.text-light:hover {
+  text-decoration: underline;
+  color: #f97316; /* orange hover */
+}
