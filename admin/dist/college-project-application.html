@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Courses Syllabus & Notes</title>
+
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Feather Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Optional Flat Able CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="menu.js"></script>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f8f9fa;
+      padding: 20px;
+    }
+
+    .table-responsive {
+      margin-top: 20px;
+    }
+
+    .loader-bg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #fff;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+    }
+
+    .loader-fill {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #007bff;
+      border-top: 5px solid transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="pcoded-main-container">
+    <div class="pcoded-content">
+      <!-- [ breadcrumb ] start -->
+      <div class="page-header">
+        <div class="page-block">
+          <div class="row align-items-center">
+            <div class="col-md-12">
+              <div class="page-header-title">
+                <h5 class="m-b-10">Courses Syllabus & Notes</h5>
+              </div>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#!">Bootstrap Table</a></li>
+                <li class="breadcrumb-item"><a href="#!">Basic Tables</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- [ breadcrumb ] end -->
+      <!-- [ Main Content ] start -->
+      <div class="row">
+        <!-- Modal -->
+        <div class="modal fade" id="applyProjectModal" tabindex="-1" aria-labelledby="applyProjectModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="applyProjectModalLabel">Apply for a College Project</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="projectForm" novalidate>
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label for="fullname" class="form-label">Full Name</label>
+                      <input type="text" name="full_name" id="fullname" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <label for="phone" class="form-label">Phone Number</label>
+                      <input type="tel" id="phone" name="mobileno" class="form-control" required pattern="[0-9]{10}"
+                        maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10);">
+                    </div>
+                    <div class="col-md-6">
+                      <label for="college" class="form-label">College Name</label>
+                      <input type="text" id="college" name="college" class="form-control" required>
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="course" class="form-label">Course / Branch</label>
+                    <input type="text" id="course" name="course" class="form-control" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="domain" class="form-label">Project Domain</label>
+                    <select id="domain" name="domain" class="form-select" required>
+                      <option value="">Choose...</option>
+                      <option value="Artificial Intelligence & ML">Artificial Intelligence & ML</option>
+                      <option value="Data Science & Big Data">Data Science & Big Data</option>
+                      <option value="Web & Mobile Development">Web & Mobile Development</option>
+                      <option value="Cybersecurity & Blockchain">Cybersecurity & Blockchain</option>
+                      <option value="Internet of Things (IoT)">Internet of Things (IoT)</option>
+                      <option value="Cloud Computing">Cloud Computing</option>
+                      <option value="AR, VR & Robotics">AR, VR & Robotics</option>
+                    </select>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="subDomain" class="form-label">Sub-Domain</label>
+                    <input type="text" id="subDomain" name="subDomain" class="form-control" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="projectTitle" class="form-label">Project Title</label>
+                    <input type="text" id="projectTitle" name="projectTitle" class="form-control" required>
+                  </div>
+
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-primary px-4">Submit Application</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="container py-4">
+          <h4 class="text-center mb-3">College Project Applications</h4>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped align-middle" id="applicationsTable">
+              <thead class="table-dark">
+                <tr>
+                  <th>#</th>
+                  <th>Timestamp</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Mobile</th>
+                  <th>College</th>
+                  <th>Course</th>
+                  <th>Domain</th>
+                  <th>Sub Domain</th>
+                  <th>Project</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- [ Main Content ] end -->
+    </div>
+  </section>
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+</body>
+
+</html>
+
+
+
+<script>
+
+
+  // ---- CONFIG ----
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx7__du5Y5mRp2iUNeiaDrS0ErF-ThnCep-4O7ArH0KNUdE_l0gOsluGSmqTz2wjxx0/exec"; // ← replace with your deployed web app URL
+
+  // ---- Domain/Subdomain/Project options (kept same as yours) ----
+  const projectOptions = {
+    ai: {
+      "Machine Learning": ["Fake News Detection", "Game Agent AI"],
+      "Computer Vision": ["Emotion Recognition", "Healthcare Chatbot"]
+    },
+    data: {
+      "Analytics": ["Customer Sentiment", "Climate Modeling"],
+      "Prediction": ["Stock Market Prediction", "E-Learning Dropout"]
+    },
+    web: {
+      "E-Commerce": ["Shopping Platform"],
+      "Healthcare": ["Appointment Booking", "Online Exam Proctor"]
+    },
+    cyber: {
+      "Blockchain": ["Supply Chain Tracking", "Secure Identity Verification"],
+      "Security": ["Phishing Detection", "Intrusion Detection"]
+    },
+    iot: {
+      "Smart Home": ["IoT-Based Smart Home Automation"],
+      "Smart Cities": ["Smart Waste Management System", "IoT for Traffic Control"],
+      "Agriculture": ["IoT for Precision Agriculture"],
+      "Healthcare": ["Wearable Health Monitoring Device"]
+    },
+    cloud: {
+      "Cloud Applications": ["Serverless Cloud Application"],
+      "Infrastructure": ["Load Balancing in Cloud Data Centers", "Cloud Disaster Recovery"],
+      "Security": ["Cloud Security using Homomorphic Encryption"],
+      "Optimization": ["AI for Cloud Resource Optimization"]
+    },
+    arvr: {
+      "Education & Training": ["AR-Based Educational Learning App", "VR-Based Emergency Response Training"],
+      "Healthcare": ["VR Therapy for Anxiety Disorders"],
+      "Robotics & Vision": ["Robotic Arm with Computer Vision"],
+      "Navigation": ["AR for Museum Navigation"]
+    }
+  };
+
+  // ---- helpers ----
+  function $(id) { return document.getElementById(id); }
+
+  // ---- init modal domain/subdomain/project UI ----
+  function initCollegeProjectModal() {
+    const domainSelect = $("domain");
+    const subDomainSelect = $("subDomain");
+    const projectSelect = $("projectTitle");
+    const subDomainSection = $("subDomainSection");
+    const projectSection = $("projectSection");
+
+    function resetSubProject() {
+      subDomainSelect.innerHTML = '<option value="">Choose sub-domain...</option>';
+      projectSelect.innerHTML = '<option value="">Choose project...</option>';
+      subDomainSection.classList.add("d-none");
+      projectSection.classList.add("d-none");
+      subDomainSelect.required = false;
+      projectSelect.required = false;
+    }
+
+    domainSelect.addEventListener("change", function () {
+      const domain = this.value;
+      resetSubProject();
+      if (domain && projectOptions[domain]) {
+        Object.keys(projectOptions[domain]).forEach(sub => {
+          const opt = document.createElement("option");
+          opt.value = sub;
+          opt.textContent = sub;
+          subDomainSelect.appendChild(opt);
+        });
+        subDomainSection.classList.remove("d-none");
+        subDomainSelect.required = true;
+      }
+    });
+
+    subDomainSelect.addEventListener("change", function () {
+      const domain = domainSelect.value;
+      const sub = this.value;
+      projectSelect.innerHTML = '<option value="">Choose project...</option>';
+      if (domain && sub && projectOptions[domain][sub]) {
+        projectOptions[domain][sub].forEach(p => {
+          const opt = document.createElement("option");
+          opt.value = p;
+          opt.textContent = p;
+          projectSelect.appendChild(opt);
+        });
+        projectSection.classList.remove("d-none");
+        projectSelect.required = true;
+      } else {
+        projectSection.classList.add("d-none");
+        projectSelect.required = false;
+      }
+    });
+
+    const applyModalEl = document.getElementById("applyProjectModal");
+    applyModalEl.addEventListener('show.bs.modal', function () {
+      resetSubProject();
+      domainSelect.value = "";
+    });
+  }
+
+  // ---- form submit (action=add) ----
+  function initProjectForm() {
+    const form = $("projectForm");
+    if (!form) return;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // basic validation: check required
+      if (!form.checkValidity()) {
+        form.classList.add('was-validated');
+        return;
+      }
+
+      const body = new URLSearchParams(new FormData(form));
+      body.append("action", "add");
+
+      try {
+        const res = await fetch(SCRIPT_URL, { method: "POST", body });
+        const text = await res.text();
+        if (text.trim() === "Added") {
+          Swal.fire({ icon: "success", title: "Submitted!", text: "Application saved successfully!", timer: 1600, showConfirmButton: false });
+          form.reset();
+          // close modal
+          const modalEl = document.getElementById("applyProjectModal");
+          const modalInstance = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+          modalInstance.hide();
+          loadApplications();
+        } else {
+          Swal.fire("Error", `Server: ${text}`, "error");
+        }
+      } catch (err) {
+        console.error("Submit error:", err);
+        Swal.fire("Error", "Submission failed. Check console/network.", "error");
+      }
+    });
+  }
+
+  // ---- load table from sheet ----
+  // Helper: normalize keys (lowercase, remove non-alphanumeric)
+  function normalizeKey(k) {
+    if (k === undefined || k === null) return "";
+    return String(k).toLowerCase().replace(/[^a-z0-9]/g, "");
+  }
+
+  // Helper: try many possible names, return first non-empty
+  function getField(row, ...candidates) {
+    // Build a normalized map for this row on first call
+    if (!row._norm) {
+      row._norm = {};
+      Object.keys(row).forEach(k => {
+        row._norm[normalizeKey(k)] = row[k];
+      });
+    }
+    for (let c of candidates) {
+      const norm = normalizeKey(c);
+      if (row._norm[norm] !== undefined && row._norm[norm] !== "") return row._norm[norm];
+    }
+    // fallback: try common names
+    const fallbackOrder = ["fullname", "name", "fullName", "email", "mobile", "mobileno", "college", "course", "domain", "subdomain", "project", "status"];
+    for (let f of fallbackOrder) {
+      if (row._norm[f] !== undefined && row._norm[f] !== "") return row._norm[f];
+    }
+    return "";
+  }
+
+  // ---- load table from sheet (robust) ----
+  async function loadApplications() {
+    try {
+      const res = await fetch(SCRIPT_URL, { cache: "no-store" });
+      const data = await res.json();
+
+      console.log("Raw data from sheet (first 3 rows):", data.slice(0, 3));
+      // show available keys for first row to debug
+      if (data.length > 0) {
+        console.log("Keys in first row:", Object.keys(data[0]));
+      }
+
+      const tbody = $("tableBody");
+      tbody.innerHTML = "";
+
+      data.forEach((row, i) => {
+        // Use tolerant getters
+        const name = getField(row, "Full Name", "Name", "fullname", "Fullname");
+        const email = getField(row, "Email", "email");
+        const rawTimestamp = getField(row, "Timestamp", "timestamp", "time", "Date", "date");
+
+        const mobile = getField(row, "Mobile", "mobileno", "mobile");
+        const college = getField(row, "College", "college");
+        const course = getField(row, "Course", "course");
+        const domainText = getField(row, "Domain", "domain");
+        const subDomainText = getField(row, "Sub Domain", "SubDomain", "subdomain", "sub Domain");
+        const projectText = getField(row, "Project", "project", "Project Title", "projectTitle");
+        const status = getField(row, "Status", "status") || "Pending";
+
+        const badgeClass = status.toLowerCase() === "approved" ? "success"
+          : status.toLowerCase() === "declined" ? "danger"
+            : "warning";
+
+        // ensure row.index exists (fallback to sheet row number if present)
+        const rowIndex = row.index || row.Index || getField(row, "index") || (i + 2);
+
+        tbody.insertAdjacentHTML("beforeend", `
+        <tr>
+          <td>${i + 1}</td>
+          <td>${getField(row, "Timestamp", "timestamp", "time", "Date", "date")}</td>
+          <td>${name}</td>
+          <td>${email}</td>
+          <td>${mobile}</td>
+          <td>${college}</td>
+          <td>${course}</td>
+          <td>${domainText}</td>
+          <td>${subDomainText}</td>
+          <td>${projectText}</td>
+          <td><span class="badge bg-${badgeClass}">${status}</span></td>
+          <td>
+            <button class="btn btn-success btn-sm" onclick="updateStatus(${rowIndex}, 'Approved')">Approve</button>
+            <button class="btn btn-danger btn-sm" onclick="updateStatus(${rowIndex}, 'Declined')">Decline</button>
+            <button class="btn btn-outline-danger btn-sm" onclick="deleteRow(${rowIndex})">Delete</button>
+          </td>
+        </tr>
+      `);
+      });
+    } catch (err) {
+      console.error("Error loading data:", err);
+      Swal.fire("Error", "Failed to load data from sheet. See console for details.", "error");
+    }
+  }
+
+  // ---- update status via POST (action=update) ----
+  async function updateStatus(index, status) {
+    try {
+      const body = new URLSearchParams({ action: "update", index, status });
+      const res = await fetch(SCRIPT_URL, { method: "POST", body });
+      const text = await res.text();
+      if (text.trim() === "Updated") {
+        Swal.fire({ icon: "success", title: "Updated", text: `Status set to ${status}`, timer: 1200, showConfirmButton: false });
+      } else {
+        Swal.fire("Error", `Server: ${text}`, "error");
+      }
+    } catch (err) {
+      console.error("updateStatus error:", err);
+      Swal.fire("Error", "Update failed.", "error");
+    } finally {
+      loadApplications();
+    }
+  }
+
+  // ---- delete via POST (action=delete) ----
+  async function deleteRow(index) {
+    const confirm = await Swal.fire({
+      title: "Are you sure?",
+      text: "This record will be deleted!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!"
+    });
+    if (!confirm.isConfirmed) return;
+
+    try {
+      const body = new URLSearchParams({ action: "delete", index });
+      const res = await fetch(SCRIPT_URL, { method: "POST", body });
+      const text = await res.text();
+      if (text.trim() === "Deleted") {
+        Swal.fire({ icon: "success", title: "Deleted", timer: 1000, showConfirmButton: false });
+      } else {
+        Swal.fire("Error", `Server: ${text}`, "error");
+      }
+    } catch (err) {
+      console.error("deleteRow error:", err);
+      Swal.fire("Error", "Delete failed.", "error");
+    } finally {
+      loadApplications();
+    }
+  }
+
+  // ---- init on DOMContentLoaded ----
+  document.addEventListener("DOMContentLoaded", () => {
+    initCollegeProjectModal();
+    initProjectForm();
+    loadApplications();
+  });
+
+</script>

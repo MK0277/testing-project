@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Flat Able - Premium Admin Template by Phoenixcoded</title>
+  <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 11]>
+    	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    	<![endif]-->
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="">
+  <meta name="author" content="Phoenixcoded" />
+  <!-- Favicon icon -->
+  <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+  <!-- vendor css -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Sweet Alert Success Message -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="menu.js"></script>
+  <style>
+    .card {
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: none;
+      background: #28a745;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    /* Fix close button & modal stacking */
+    .modal-backdrop {
+      z-index: 1050 !important;
+    }
+
+    #pdfListModal {
+      z-index: 1060 !important;
+    }
+
+    .modal-content {
+      border-radius: 10px;
+    }
+
+    /* Optional: slightly reduce modal padding for smaller look */
+    #pdfListModal .modal-body {
+      padding: 1rem;
+    }
+  </style>
+
+</head>
+
+<body class="">
+  <!-- [ Pre-loader ] start -->
+  <div class="loader-bg">
+    <div class="loader-track">
+      <div class="loader-fill"></div>
+    </div>
+  </div>
+  <!-- [ Pre-loader ] End -->
+  <!-- [ navigation menu ] start -->
+
+  <!-- [ Header ] end -->
+
+
+
+  <!-- [ Main Content ] start -->
+  <section class="pcoded-main-container">
+    <div class="pcoded-content">
+      <!-- [ breadcrumb ] start -->
+      <div class="page-header">
+        <div class="page-block">
+          <div class="row align-items-center">
+            <div class="col-md-12">
+              <div class="page-header-title">
+                <h5 class="m-b-10">Courses Syllabus & Notes</h5>
+              </div>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#!">Bootstrap Table</a></li>
+                <li class="breadcrumb-item"><a href="#!">Basic Tables</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- [ breadcrumb ] end -->
+      <!-- [ Main Content ] start -->
+      <div class="row">
+        <div class="container">
+          <h2 class="text-center mb-4">📘 Upload Course PDFs</h2>
+
+          <div class="card p-4 mb-4">
+            <form id="uploadForm">
+              <div class="mb-3">
+                <label class="form-label">Category</label>
+                <select id="category" class="form-select" required>
+                  <option value="">Select...</option>
+                  <option value="Job Oriented Courses">Job Oriented Courses</option>
+                  <option value="Professional Courses">Professional Courses</option>
+                  <option value="Junior Geeks">Junior Geeks</option>
+                  <option value="Computer Science (XI - XII)">Computer Science (XI - XII)</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Course Name</label>
+                <select id="courseName" class="form-select" required>
+                  <option value="">Select category first</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Upload Notes PDF(s)</label>
+                <input type="file" id="notesPdf" class="form-control" accept="application/pdf" multiple>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Upload Syllabus PDF(s)</label>
+                <input type="file" id="syllabusPdf" class="form-control" accept="application/pdf" multiple>
+              </div>
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary px-5">Upload</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="text-center">
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#UploadModal">
+              📂 View Uploaded Courses
+            </button>
+          </div>
+        </div>
+
+        <!-- Toast -->
+        <div id="toast">✅ Uploaded Successfully!</div>
+
+        <!-- Course List Modal -->
+        <div class="modal fade" id="UploadModal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content shadow-lg">
+              <div class="modal-header">
+                <h5 class="modal-title">Uploaded Courses</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+              </div>
+              <div class="modal-body" id="courseListBody">
+                <p class="text-center text-muted">No data available.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PDF List Modal -->
+        <div class="modal fade" id="pdfListModal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-md"> <!-- smaller modal -->
+            <div class="modal-content shadow-lg">
+              <div class="modal-header">
+                <h5 class="modal-title" id="pdfListTitle">PDF Files</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" id="pdfListContainer">
+                <p class="text-center text-muted">No PDFs uploaded yet.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+          const categoryCourses = {
+            "Job Oriented Courses": ["Full Stack (MERN)", "Full Stack (MEAN)", "DevOps with AWS", "Cybersecurity", "Artificial Intelligence", "Data Science", "Data Analytics"],
+            "Professional Courses": ["MEAN / MERN Stack", "UI Development", "AWS / Azure / GCP", "DevOps", "Cyber Security", "Data Science", "Digital Marketing", "AI / Machine Learning", "Python Training", "Graphic Designing", "Software Testing", "Game Development", "Data Analytics", "Database", "C / C++", "Java", "Advance Java", "Excel Training", "React Training", "React Native", "SAP Training", ".Net Training", "Aptitude Training", "Android Training", "Angular Training", "Node.js Training", "Automation Training"],
+            "Junior Geeks": ["Basic Artificial Intelligence", "Python", "Java Programming", "Web Development", "Basic Computer", "Graphic Designing", "MS Office", "Mobile App Development", "Game Development", "Robotics", "Animation", "Cyber Safety"],
+            "Computer Science (XI - XII)": ["Python(CBSE Board)", "Java(ICSE Board)"],
+          };
+
+          document.getElementById("category").addEventListener("change", function () {
+            const selected = this.value;
+            const courseSelect = document.getElementById("courseName");
+            courseSelect.innerHTML = "<option value=''>Select...</option>";
+            if (categoryCourses[selected]) {
+              categoryCourses[selected].forEach(c => {
+                const opt = document.createElement("option");
+                opt.value = c;
+                opt.textContent = c;
+                courseSelect.appendChild(opt);
+              });
+            }
+          });
+
+          // ✅ Your deployed Google Apps Script Web App URL
+          const webAppUrl = "https://script.google.com/macros/s/AKfycbxqpdzBC_zCV8Ubn_lhr1gZCAYdFfknCGdES9DQy4lcsVi21y6nm0UAdIFilzdkDWPq-g/exec";
+
+          // ✅ Handle upload
+          document.getElementById("uploadForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const category = document.getElementById("category").value.trim();
+            const course = document.getElementById("courseName").value.trim();
+            const notesFiles = document.getElementById("notesPdf").files;
+            const syllabusFiles = document.getElementById("syllabusPdf").files;
+
+            if (!category || !course) {
+              alert("⚠️ Please select both category and course!");
+              return;
+            }
+
+            showToast("📤 Uploading... Please wait");
+
+            // Function to upload each file
+            async function uploadFile(file, type) {
+              const base64 = await fileToBase64(file);
+              const formData = new FormData();
+              formData.append("category", category);
+              formData.append("course", course);
+              formData.append("type", type);
+              formData.append("fileName", file.name);
+              formData.append("fileData", base64.split(",")[1]);
+
+              try {
+                const response = await fetch(webAppUrl, { method: "POST", body: formData });
+                const result = await response.json();
+
+                if (!result.success) {
+                  alert("❌ Upload failed for " + file.name + ": " + result.message);
+                }
+              } catch (err) {
+                console.error("Error uploading:", err);
+                alert("❌ Upload error: " + err.message);
+              }
+            }
+
+            for (const f of notesFiles) await uploadFile(f, "notes");
+            for (const f of syllabusFiles) await uploadFile(f, "syllabus");
+
+            showToast("✅ Upload completed successfully!");
+            e.target.reset();
+
+            // ✅ Show SweetAlert success popup
+            Swal.fire({
+              icon: "success",
+              title: "Upload Successful!",
+              text: "Your files have been uploaded successfully.",
+              confirmButtonColor: "#3085d6",
+              confirmButtonText: "OK"
+            });
+
+          });
+
+          function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+              const reader = new FileReader();
+              reader.onload = () => resolve(reader.result);
+              reader.onerror = reject;
+              reader.readAsDataURL(file);
+            });
+          }
+
+          function showToast(msg) {
+            const toast = document.getElementById("toast");
+            toast.textContent = msg;
+            toast.style.display = "block";
+            setTimeout(() => (toast.style.display = "none"), 2500);
+          }
+
+          // ✅ Load all courses from Google Sheets instead of localStorage
+          document.getElementById("UploadModal").addEventListener("show.bs.modal", async () => {
+            const body = document.getElementById("courseListBody");
+            body.innerHTML = "<p class='text-center text-muted'>Loading...</p>";
+
+            try {
+              const response = await fetch(`${webAppUrl}?action=getAllCourses`);
+              const data = await response.json();
+
+              if (!data.success || !data.records || data.records.length === 0) {
+                body.innerHTML = '<p class="text-center text-muted">No uploaded data yet.</p>';
+                return;
+              }
+
+              const grouped = {};
+
+              // Group by Category → Course → Type
+
+              body.innerHTML = "";
+              data.records.forEach(r => {
+                const Category = r.Category || r.category || "Unknown Category";
+                const Course = r.Course || r.course || "Unknown Course";
+                const Type = r.Type || r.type || "";
+                const FileName = r.FileName || r["File Name"] || r.filename || "Unnamed File";
+                const URL = r.URL || r.url || "#";
+
+                if (!grouped[Category]) grouped[Category] = {};
+                if (!grouped[Category][Course]) grouped[Category][Course] = { notes: [], syllabus: [] };
+
+                const fileData = { name: FileName, url: URL };
+
+                if (Type.toLowerCase().includes("note")) {
+                  grouped[Category][Course].notes.push(fileData);
+                } else {
+                  grouped[Category][Course].syllabus.push(fileData);
+                }
+              });
+
+              for (const category in grouped) {
+                const h5 = document.createElement("h5");
+                h5.textContent = category;
+                h5.className = "mt-3";
+                body.appendChild(h5);
+
+                const list = document.createElement("ul");
+                list.className = "list-group mb-3";
+
+                for (const course in grouped[category]) {
+                  const li = document.createElement("li");
+                  li.className = "list-group-item d-flex justify-content-between align-items-center";
+                  li.innerHTML = `
+                    ${course}
+                    <span>
+                      <i class="bi bi-book text-success mx-2" title="Notes" onclick='openPdfList("${category}", "${course}", "notes")'></i>
+                      <i class="bi bi-file-earmark-text text-warning mx-2" title="Syllabus" onclick='openPdfList("${category}", "${course}", "syllabus")'></i>
+                    </span>`;
+                  list.appendChild(li);
+                }
+                body.appendChild(list);
+              }
+
+              window.allCoursesData = grouped; // store globally
+            } catch (err) {
+              console.error(err);
+              body.innerHTML = `<p class="text-center text-danger">Error loading data: ${err.message}</p>`;
+            }
+          });
+
+          // ✅ Show PDF list from fetched data
+          function openPdfList(category, course, type) {
+            const data = window.allCoursesData || {};
+            const files = data[category]?.[course]?.[type] || [];
+            const title = document.getElementById("pdfListTitle");
+            const container = document.getElementById("pdfListContainer");
+
+            title.textContent = `${course} - ${type.charAt(0).toUpperCase() + type.slice(1)} Files`;
+            container.innerHTML = "";
+
+            if (files.length === 0) {
+              container.innerHTML = '<p class="text-center text-muted">No PDFs uploaded yet.</p>';
+              return;
+            }
+
+            files.forEach(f => {
+              const div = document.createElement("div");
+              div.className = "d-flex justify-content-between align-items-center border p-2 rounded mb-2";
+              div.innerHTML = `<div><strong>${f.name}</strong></div>
+                <a href="${f.url}" target="_blank" class="btn btn-sm btn-primary">Download</a>`;
+              container.appendChild(div);
+            });
+
+            const pdfModal = new bootstrap.Modal(document.getElementById("pdfListModal"));
+            pdfModal.show();
+          }
+        </script>
+
+
+      </div>
+      <!-- [ Main Content ] end -->
+    </div>
+  </section>
+  <!-- Required Js -->
+  <script src="assets/js/vendor-all.min.js"></script>
+  <script src="assets/js/plugins/bootstrap.min.js"></script>
+  <script src="assets/js/pcoded.min.js"></script>
+
+
+
+</body>
+
+</html>

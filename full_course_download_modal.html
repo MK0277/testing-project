@@ -82,443 +82,443 @@
   .pdf-badge {
     font-size: 0.75rem;
   }
-</style>
+</style><!-- 
 </head>
 
 <body>
-
-  <!--   <div class="container mt-5 text-center">
+ -->
+<!--   <div class="container mt-5 text-center">
     <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#courseListModal">📥 Open Course
       List</button>
   </div> -->
 
-  <!-- Course List Modal -->
-  <div class="modal fade" id="courseListModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
-      <div class="modal-content shadow-lg">
+<!-- Course List Modal -->
+<div class="modal fade" id="courseListModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header">
+        <h5 class="modal-title">Select Course to Download</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Job Oriented -->
+        <h6 class="fw-bold">💼 Job Oriented Courses</h6>
+        <ul class="list-group mb-4">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Full Stack (MERN)
+            <span class="pdf-download">
+              <i class="bi bi-book text-success mx-2" onclick="openPdfListModal('Full Stack Notes', [
+         {name:'Module 1 Notes', file:'module1.pdf', size:'2MB'},
+         {name:'Module 2 Notes', file:'module2.pdf', size:'3MB'},
+         {name:'Module 3 Notes', file:'module3.pdf', size:'1.5MB'}
+       ])">
+              </i>
+              <i class="bi bi-file-earmark-text text-warning mx-2" onclick="openPdfListModal('Full Stack Syllabus', [
+         {name:'Frontend Syllabus', file:'frontend_syllabus.pdf', size:'1MB'},
+         {name:'Backend Syllabus', file:'backend_syllabus.pdf', size:'1.2MB'},
+         {name:'Database Syllabus', file:'db_syllabus.pdf', size:'800KB'}
+       ])">
+              </i>
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Full Stack (MEAN)
+            <span class="pdf-download">
+              <i class="bi bi-book text-success mx-2" onclick="openPdfListModal('Full Stack Notes', [
+         {name:'Module 1 Notes', file:'module1.pdf', size:'2MB'},
+         {name:'Module 2 Notes', file:'module2.pdf', size:'3MB'},
+         {name:'Module 3 Notes', file:'module3.pdf', size:'1.5MB'}
+       ])">
+              </i>
+              <i class="bi bi-file-earmark-text text-warning mx-2" onclick="openPdfListModal('Full Stack Syllabus', [
+         {name:'Frontend Syllabus', file:'frontend_syllabus.pdf', size:'1MB'},
+         {name:'Backend Syllabus', file:'backend_syllabus.pdf', size:'1.2MB'},
+         {name:'Database Syllabus', file:'db_syllabus.pdf', size:'800KB'}
+       ])">
+              </i>
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            DevOps with AWS
+            <span class="pdf-download">
+              <i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('DevOps Notes', [{name:'DevOps Notes', file:'', size:''}])"></i>
+              <i class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('DevOps Syllabus', [{name:'DevOps Syllabus', file:'', size:''}])"></i>
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Cybersecurity
+            <span class="pdf-download">
+              <i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Cybersecurity Notes', [{name:'Cybersecurity Notes', file:'', size:''}])"></i>
+              <i class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Cybersecurity Syllabus', [{name:'Cybersecurity Syllabus', file:'', size:''}])"></i>
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Artificial Intelligence
+            <span class="pdf-download">
+              <i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('AI/ML Notes', [{name:'AI/ML Notes', file:'', size:''}])"></i>
+              <i class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('AI/ML Syllabus', [{name:'AI/ML Syllabus', file:'', size:''}])"></i>
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Data Science
+            <span class="pdf-download">
+              <i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('AI/ML Notes', [{name:'AI/ML Notes', file:'', size:''}])"></i>
+              <i class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('AI/ML Syllabus', [{name:'AI/ML Syllabus', file:'', size:''}])"></i>
+            </span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Data Analytics
+            <span class="pdf-download">
+              <i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('AI/ML Notes', [{name:'AI/ML Notes', file:'', size:''}])"></i>
+              <i class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('AI/ML Syllabus', [{name:'AI/ML Syllabus', file:'', size:''}])"></i>
+            </span>
+          </li>
+        </ul>
+
+        <!-- Professional Courses -->
+        <h6 class="fw-bold">👨‍💼 Professional Courses</h6>
+        <ul class="list-group mb-4">
+          <li class="list-group-item d-flex justify-content-between align-items-center">MEAN / MERN Stack
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('MEAN/MERN Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('MEAN/MERN Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">UI Development
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('UI Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('UI Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">AWS / Azure / GCP
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Cloud Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Cloud Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">DevOps
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('DevOps Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('DevOps Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Cyber Security
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Cyber Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Cyber Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Data Science
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Data Science Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Data Science Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Digital Marketing
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('DM Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('DM Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">AI / Machine Learning
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('AI/ML Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('AI/ML Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Python Training
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Python Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Python Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Graphic Designing
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Graphic Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Graphic Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Software Testing
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Testing Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Testing Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Game Development
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Game Dev Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Game Dev Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Data Analytics
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Analytics Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Analytics Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Database
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Database Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Database Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">C / C++
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('C/C++ Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('C/C++ Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Java
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Java Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Java Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Advance Java
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Adv Java Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Adv Java Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Excel Training
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Excel Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Excel Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">React Training
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('React Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('React Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">React Native
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('React Native Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('React Native Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">SAP Training
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('SAP Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('SAP Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">.Net Training
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('.Net Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('.Net Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Aptitude Training
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Aptitude Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Aptitude Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Android Training
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Android Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Android Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Angular Training
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Angular Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Angular Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Node.js Training
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Node Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Node Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Automation Training
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Automation Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Automation Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+        </ul>
+
+        <!-- Junior Geeks -->
+        <h6 class="fw-bold">🧒 Junior Geeks (6-12)</h6>
+        <ul class="list-group mb-4">
+          <li class="list-group-item d-flex justify-content-between align-items-center">Basic Artificial Intelligence
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Junior AI Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Junior AI Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Python
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Junior Python Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Junior Python Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Java Programming
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Junior Java Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Junior Java Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Web Development
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Junior Web Dev Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Junior Web Dev Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Basic Computer
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Junior Graphic Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Junior Graphic Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Graphic Designing
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Junior Graphic Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Junior Graphic Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">MS Office
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('MS Office Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('MS Office Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Mobile App Development
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('Junior Mobile Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('Junior Mobile Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+
+
+        </ul>
+
+        <!-- Computer Science XI-XII -->
+        <h6 class="fw-bold">📚 Computer Science (XI–XII)</h6>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center">Python(CBSE Board)
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('CS CBSE Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('CS CBSE Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">Java(ICSE Board)
+            <span class="pdf-download"><i class="bi bi-book text-success mx-2"
+                onclick="openPdfListModal('CS Python Notes',[{name:'Notes',file:'',size:''}])"></i><i
+                class="bi bi-file-earmark-text text-warning mx-2"
+                onclick="openPdfListModal('CS Python Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- PDF List Modal -->
+<div class="modal fade" id="pdfListModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pdfListTitle">Select File</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="pdfListContainer" class="row row-cols-1 g-3"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Download Form Modal -->
+<div class="modal fade" id="downloadFormModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content shadow-lg">
+      <form id="downloadForm">
         <div class="modal-header">
-          <h5 class="modal-title">Select Course to Download</h5>
+          <h5 class="modal-title">Enter Your Details</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-
-          <!-- Job Oriented -->
-          <h6 class="fw-bold">💼 Job Oriented Courses</h6>
-          <ul class="list-group mb-4">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Full Stack (MERN)
-              <span class="pdf-download">
-                <i class="bi bi-book text-success mx-2" onclick="openPdfListModal('Full Stack Notes', [
-         {name:'Module 1 Notes', file:'module1.pdf', size:'2MB'},
-         {name:'Module 2 Notes', file:'module2.pdf', size:'3MB'},
-         {name:'Module 3 Notes', file:'module3.pdf', size:'1.5MB'}
-       ])">
-                </i>
-                <i class="bi bi-file-earmark-text text-warning mx-2" onclick="openPdfListModal('Full Stack Syllabus', [
-         {name:'Frontend Syllabus', file:'frontend_syllabus.pdf', size:'1MB'},
-         {name:'Backend Syllabus', file:'backend_syllabus.pdf', size:'1.2MB'},
-         {name:'Database Syllabus', file:'db_syllabus.pdf', size:'800KB'}
-       ])">
-                </i>
-              </span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Full Stack (MEAN)
-              <span class="pdf-download">
-                <i class="bi bi-book text-success mx-2" onclick="openPdfListModal('Full Stack Notes', [
-         {name:'Module 1 Notes', file:'module1.pdf', size:'2MB'},
-         {name:'Module 2 Notes', file:'module2.pdf', size:'3MB'},
-         {name:'Module 3 Notes', file:'module3.pdf', size:'1.5MB'}
-       ])">
-                </i>
-                <i class="bi bi-file-earmark-text text-warning mx-2" onclick="openPdfListModal('Full Stack Syllabus', [
-         {name:'Frontend Syllabus', file:'frontend_syllabus.pdf', size:'1MB'},
-         {name:'Backend Syllabus', file:'backend_syllabus.pdf', size:'1.2MB'},
-         {name:'Database Syllabus', file:'db_syllabus.pdf', size:'800KB'}
-       ])">
-                </i>
-              </span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              DevOps with AWS
-              <span class="pdf-download">
-                <i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('DevOps Notes', [{name:'DevOps Notes', file:'', size:''}])"></i>
-                <i class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('DevOps Syllabus', [{name:'DevOps Syllabus', file:'', size:''}])"></i>
-              </span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Cybersecurity
-              <span class="pdf-download">
-                <i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Cybersecurity Notes', [{name:'Cybersecurity Notes', file:'', size:''}])"></i>
-                <i class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Cybersecurity Syllabus', [{name:'Cybersecurity Syllabus', file:'', size:''}])"></i>
-              </span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Artificial Intelligence
-              <span class="pdf-download">
-                <i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('AI/ML Notes', [{name:'AI/ML Notes', file:'', size:''}])"></i>
-                <i class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('AI/ML Syllabus', [{name:'AI/ML Syllabus', file:'', size:''}])"></i>
-              </span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Data Science
-              <span class="pdf-download">
-                <i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('AI/ML Notes', [{name:'AI/ML Notes', file:'', size:''}])"></i>
-                <i class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('AI/ML Syllabus', [{name:'AI/ML Syllabus', file:'', size:''}])"></i>
-              </span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              Data Analytics
-              <span class="pdf-download">
-                <i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('AI/ML Notes', [{name:'AI/ML Notes', file:'', size:''}])"></i>
-                <i class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('AI/ML Syllabus', [{name:'AI/ML Syllabus', file:'', size:''}])"></i>
-              </span>
-            </li>
-          </ul>
-
-          <!-- Professional Courses -->
-          <h6 class="fw-bold">👨‍💼 Professional Courses</h6>
-          <ul class="list-group mb-4">
-            <li class="list-group-item d-flex justify-content-between align-items-center">MEAN / MERN Stack
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('MEAN/MERN Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('MEAN/MERN Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">UI Development
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('UI Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('UI Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">AWS / Azure / GCP
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Cloud Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Cloud Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">DevOps
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('DevOps Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('DevOps Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Cyber Security
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Cyber Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Cyber Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Data Science
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Data Science Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Data Science Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Digital Marketing
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('DM Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('DM Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">AI / Machine Learning
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('AI/ML Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('AI/ML Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Python Training
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Python Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Python Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Graphic Designing
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Graphic Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Graphic Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Software Testing
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Testing Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Testing Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Game Development
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Game Dev Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Game Dev Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Data Analytics
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Analytics Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Analytics Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Database
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Database Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Database Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">C / C++
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('C/C++ Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('C/C++ Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Java
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Java Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Java Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Advance Java
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Adv Java Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Adv Java Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Excel Training
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Excel Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Excel Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">React Training
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('React Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('React Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">React Native
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('React Native Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('React Native Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">SAP Training
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('SAP Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('SAP Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">.Net Training
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('.Net Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('.Net Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Aptitude Training
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Aptitude Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Aptitude Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Android Training
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Android Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Android Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Angular Training
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Angular Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Angular Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Node.js Training
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Node Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Node Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Automation Training
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Automation Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Automation Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-          </ul>
-
-          <!-- Junior Geeks -->
-          <h6 class="fw-bold">🧒 Junior Geeks (6-12)</h6>
-          <ul class="list-group mb-4">
-            <li class="list-group-item d-flex justify-content-between align-items-center">Basic Artificial Intelligence
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Junior AI Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Junior AI Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-             <li class="list-group-item d-flex justify-content-between align-items-center">Python
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Junior Python Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Junior Python Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Java Programming
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Junior Java Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Junior Java Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Web Development
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Junior Web Dev Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Junior Web Dev Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Basic Computer
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Junior Graphic Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Junior Graphic Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Graphic Designing
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Junior Graphic Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Junior Graphic Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">MS Office
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('MS Office Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('MS Office Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Mobile App Development
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('Junior Mobile Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('Junior Mobile Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            
-            
-          </ul>
-
-          <!-- Computer Science XI-XII -->
-          <h6 class="fw-bold">📚 Computer Science (XI–XII)</h6>
-          <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center">Python(CBSE Board)
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('CS CBSE Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('CS CBSE Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">Java(ICSE Board)
-              <span class="pdf-download"><i class="bi bi-book text-success mx-2"
-                  onclick="openPdfListModal('CS Python Notes',[{name:'Notes',file:'',size:''}])"></i><i
-                  class="bi bi-file-earmark-text text-warning mx-2"
-                  onclick="openPdfListModal('CS Python Syllabus',[{name:'Syllabus',file:'',size:''}])"></i></span>
-            </li>
-
-          </ul>
-
+          <input type="hidden" id="selectedPdf">
+          <input type="hidden" id="selectedCourse">
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input required type="text" id="studentName" class="form-control" placeholder="Full Name">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input required type="email" id="studentEmail" class="form-control" placeholder="Email Address">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input required type="tel" id="studentPhone" class="form-control" placeholder="Phone Number">
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- PDF List Modal -->
-  <div class="modal fade" id="pdfListModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable">
-      <div class="modal-content shadow-lg">
-        <div class="modal-header">
-          <h5 class="modal-title" id="pdfListTitle">Select File</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success w-100">Download PDF</button>
         </div>
-        <div class="modal-body" id="pdfListContainer" class="row row-cols-1 g-3"></div>
-      </div>
+      </form>
     </div>
   </div>
+</div>
 
-  <!-- Download Form Modal -->
-  <div class="modal fade" id="downloadFormModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content shadow-lg">
-        <form id="downloadForm">
-          <div class="modal-header">
-            <h5 class="modal-title">Enter Your Details</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-          </div>
-          <div class="modal-body">
-            <input type="hidden" id="selectedPdf">
-            <input type="hidden" id="selectedCourse">
-            <div class="mb-3">
-              <label class="form-label">Name</label>
-              <input required type="text" id="studentName" class="form-control" placeholder="Full Name">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input required type="email" id="studentEmail" class="form-control" placeholder="Email Address">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Phone</label>
-              <input required type="tel" id="studentPhone" class="form-control" placeholder="Phone Number">
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-success w-100">Download PDF</button>
-          </div>
-        </form>
-      </div>
+<!-- Toast -->
+<div class="toast-container position-fixed top-0 end-0 p-3">
+  <div id="toastMsg" class="toast align-items-center text-white border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body"></div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
     </div>
   </div>
+</div>
 
-  <!-- Toast -->
-  <div class="toast-container position-fixed top-0 end-0 p-3">
-    <div id="toastMsg" class="toast align-items-center text-white border-0" role="alert">
-      <div class="d-flex">
-        <div class="toast-body"></div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-      </div>
-    </div>
-  </div>
+<script>
+  const scriptURL = "YOUR_GOOGLE_SCRIPT_URL";
+  let openedFromPdfList = false;
 
-  <script>
-    const scriptURL = "YOUR_GOOGLE_SCRIPT_URL";
-    let openedFromPdfList = false;
+  function showToast(message, bgClass) {
+    const toastEl = document.getElementById('toastMsg');
+    toastEl.className = `toast align-items-center text-white border-0 ${bgClass}`;
+    toastEl.querySelector('.toast-body').innerText = message;
+    const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+    toast.show();
+  }
 
-    function showToast(message, bgClass) {
-      const toastEl = document.getElementById('toastMsg');
-      toastEl.className = `toast align-items-center text-white border-0 ${bgClass}`;
-      toastEl.querySelector('.toast-body').innerText = message;
-      const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
-      toast.show();
-    }
+  // Open form modal for download
+  function openFormModal(course, pdfFile) {
+    document.getElementById("selectedPdf").value = pdfFile;
+    document.getElementById("selectedCourse").value = course;
+    bootstrap.Modal.getInstance(document.getElementById("courseListModal"))?.hide();
+    bootstrap.Modal.getInstance(document.getElementById("pdfListModal"))?.hide();
+    openedFromPdfList = true;
+    new bootstrap.Modal(document.getElementById("downloadFormModal")).show();
+  }
 
-    // Open form modal for download
-    function openFormModal(course, pdfFile) {
-      document.getElementById("selectedPdf").value = pdfFile;
-      document.getElementById("selectedCourse").value = course;
-      bootstrap.Modal.getInstance(document.getElementById("courseListModal"))?.hide();
-      bootstrap.Modal.getInstance(document.getElementById("pdfListModal"))?.hide();
-      openedFromPdfList = true;
-      new bootstrap.Modal(document.getElementById("downloadFormModal")).show();
-    }
-
-    // Open PDF list modal with cards
-    function openPdfListModal(title, pdfArray) {
-      document.getElementById("pdfListTitle").innerText = title;
-      const container = document.getElementById("pdfListContainer");
-      container.innerHTML = "";
-      pdfArray.forEach((pdf) => {
-        const card = document.createElement("div");
-        card.className = "pdf-card";
-        card.innerHTML = `
+  // Open PDF list modal with cards
+  function openPdfListModal(title, pdfArray) {
+    document.getElementById("pdfListTitle").innerText = title;
+    const container = document.getElementById("pdfListContainer");
+    container.innerHTML = "";
+    pdfArray.forEach((pdf) => {
+      const card = document.createElement("div");
+      card.className = "pdf-card";
+      card.innerHTML = `
       <div class="pdf-info">
         <i class="bi bi-file-earmark-text pdf-icon"></i>
         <div>
@@ -528,44 +528,44 @@
       </div>
       <i class="bi bi-download text-primary" style="cursor:pointer;" onclick="openFormModal('${pdf.name}', '${pdf.file}')"></i>
     `;
-        container.appendChild(card);
-      });
-      bootstrap.Modal.getInstance(document.getElementById("courseListModal"))?.hide();
-      new bootstrap.Modal(document.getElementById("pdfListModal")).show();
-    }
-
-    // When PDF modal closes (without clicking download)
-    document.getElementById("pdfListModal").addEventListener('hidden.bs.modal', function () {
-      if (!openedFromPdfList) new bootstrap.Modal(document.getElementById("courseListModal")).show();
+      container.appendChild(card);
     });
+    bootstrap.Modal.getInstance(document.getElementById("courseListModal"))?.hide();
+    new bootstrap.Modal(document.getElementById("pdfListModal")).show();
+  }
 
-    // When form modal closes manually
-    document.getElementById("downloadFormModal").addEventListener('hidden.bs.modal', function () {
-      new bootstrap.Modal(document.getElementById("courseListModal")).show();
-    });
+  // When PDF modal closes (without clicking download)
+  document.getElementById("pdfListModal").addEventListener('hidden.bs.modal', function () {
+    if (!openedFromPdfList) new bootstrap.Modal(document.getElementById("courseListModal")).show();
+  });
 
-    // Form submission
-    document.getElementById("downloadForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const data = {
-        name: document.getElementById("studentName").value,
-        email: document.getElementById("studentEmail").value,
-        phone: document.getElementById("studentPhone").value,
-        interest: document.getElementById("selectedCourse").value
-      };
-      fetch(scriptURL, { method: "POST", body: JSON.stringify(data) })
-        .then(() => {
-          bootstrap.Modal.getInstance(document.getElementById("downloadFormModal")).hide();
-          showToast("PDF downloaded successfully!", "bg-success");
-          window.location.href = "assets/pdf/" + document.getElementById("selectedPdf").value;
-          openedFromPdfList = false;
-        })
-        .catch(() => showToast("Submission failed. Try again!", "bg-danger"));
-    });
-  </script>
+  // When form modal closes manually
+  document.getElementById("downloadFormModal").addEventListener('hidden.bs.modal', function () {
+    new bootstrap.Modal(document.getElementById("courseListModal")).show();
+  });
 
-  <!--   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
-  <!-- </body>
+  // Form submission
+  document.getElementById("downloadForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const data = {
+      name: document.getElementById("studentName").value,
+      email: document.getElementById("studentEmail").value,
+      phone: document.getElementById("studentPhone").value,
+      interest: document.getElementById("selectedCourse").value
+    };
+    fetch(scriptURL, { method: "POST", body: JSON.stringify(data) })
+      .then(() => {
+        bootstrap.Modal.getInstance(document.getElementById("downloadFormModal")).hide();
+        showToast("PDF downloaded successfully!", "bg-success");
+        window.location.href = "assets/pdf/" + document.getElementById("selectedPdf").value;
+        openedFromPdfList = false;
+      })
+      .catch(() => showToast("Submission failed. Try again!", "bg-danger"));
+  });
+</script>
+
+<!--   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- </body>
 
 </html>  -->
 
