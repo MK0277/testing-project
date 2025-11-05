@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart College Project Categories</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+
+  <!-- Style -->
+  <link rel="stylesheet" href="css/index-style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <style>
+    body {
+      background: linear-gradient(120deg, #f9f9f9, #f1f5ff);
+      font-family: "Poppins", sans-serif;
+      overflow-x: hidden;
+    }
+
+    h2 {
+      font-weight: 700;
+      color: #222;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Search box */
+    #searchInput {
+      width: 60%;
+      border-radius: 30px;
+      border: 2px solid #007bff;
+      padding: 12px 20px;
+      transition: 0.3s;
+    }
+
+    #searchInput:focus {
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+      outline: none;
+    }
+
+    /* Category Card */
+    .category-card {
+      border: none;
+      border-radius: 20px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transform: scale(1);
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .category-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .category-card img {
+      height: 220px;
+      object-fit: cover;
+      transition: all 0.4s ease;
+    }
+
+    .category-card:hover img {
+      filter: brightness(85%);
+    }
+
+    .category-card h5 {
+      font-weight: 600;
+      color: #007bff;
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    /* Collapse content */
+    .collapse-content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 0 0 20px 20px;
+      font-size: 15px;
+      line-height: 1.6;
+      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+      animation: fadeIn 0.5s ease;
+    }
+
+    .collapse-content ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .collapse-content li {
+      margin-bottom: 8px;
+      list-style-type: disc;
+    }
+
+    /* Tech Stack Buttons */
+    .tech-stack {
+      margin-top: 15px;
+    }
+
+    .tech-btn {
+      display: inline-block;
+      margin: 5px;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .tech-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .html {
+      background: #e44d26;
+    }
+
+    .css {
+      background: #264de4;
+    }
+
+    .js {
+      background: #f7df1e;
+      color: #222;
+    }
+
+    .python {
+      background: #3776ab;
+    }
+
+    .react {
+      background: #61dafb;
+      color: #000;
+    }
+
+    .node {
+      background: #3c873a;
+    }
+
+    .sql {
+      background: #f29111;
+    }
+
+    .iot {
+      background: #6f42c1;
+    }
+
+    .django {
+      background: #0c4b33;
+    }
+
+    .flutter {
+      background: #02569b;
+    }
+
+    .kotlin {
+      background: #0095d5;
+    }
+
+    .unity {
+      background: #000000;
+    }
+
+    .unreal-engine {
+      background: #313131;
+    }
+
+    .csharp {
+      background: #1c1c1c;
+    }
+
+    .swift {
+      background: #fa7343;
+    }
+
+    .arduino {
+      background: #00979d;
+    }
+
+    .sensors {
+      background: #f39c12;
+    }
+
+    .raspberrypi {
+      background: #c51a4a;
+    }
+
+    .linux {
+      background: #9f5c5c;
+    }
+
+    .networking {
+      background: #27ae60;
+    }
+
+    .solidity {
+      background: #363636;
+    }
+
+    .ethereum {
+      background: #3c3c3d;
+    }
+
+    .aws {
+      background: #ff9900;
+    }
+
+    .azure {
+      background: #007fff;
+    }
+
+    .gcp {
+      background: #4285f4;
+    }
+
+    .docker {
+      background: #2496ed;
+    }
+
+    .r {
+      background: #276dc3;
+    }
+
+    .pandas {
+      background: #150458;
+    }
+
+    .numpy {
+      background: #013243;
+    }
+
+    .bootstrap {
+      background: #7952b3;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .collapse-content p {
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #007bff;
+      /* matches your theme */
+    }
+
+    /* No category found message */
+    #noResultMessage {
+      font-weight: 600;
+      color: #ff4d4f;
+      /* bright red */
+      background: #ffe6e6;
+      /* light red background */
+      border: 1px solid #ff4d4f;
+      padding: 10px 15px;
+      border-radius: 20px;
+      display: inline-block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .no-result-text {
+      font-size: 16px;
+    }
+
+    /* Tech note styling */
+    .tech-note {
+      font-size: 14px;
+      font-weight: 600;
+      color: #007bff;
+      /* blue theme */
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .tech-note::before {
+      content: "💻";
+      margin-right: 6px;
+    }
+
+    /* Smooth fade-in for collapses */
+    .collapse-content {
+      animation: fadeIn 0.5s ease;
+    }
+
+    .category-card img {
+      width: 100%;
+      /* make full width of card */
+      height: 220px;
+      /* keep uniform height */
+      object-fit: cover;
+      /* ensures image fills the space nicely */
+      transition: all 0.4s ease;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .category-card img {
+        height: 180px;
+        /* smaller on mobile */
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!--Menu-->
+  <script src="menu.js"></script>
+
+
+  <!--===============================
+                   MAIN SECTION Starts
+  ======================-->
+
+
+  <!-- Hero Section -->
+  <section class="hero-section position-relative text-white overflow-hidden" style="height:70vh">
+    <!-- Background video --><video autoplay muted loop playsinline
+      class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
+      <source src="assets/video/course-video.mp4" type="video/mp4" />Your browser does not support the video
+      tag.
+    </video>
+    <!-- Overlay -->
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.842);"></div>
+    <!-- Text Content -->
+    <div class="position-absolute top-50 start-50 translate-middle text-center px-3">
+      <h1 class="display-4 fw-bold mb-3" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">College Project
+        Opportunities </h1>
+      <p class="lead fw-semibold" style="text-shadow: 1px 1px 5px rgba(0,0,0,0.6);">Explore exciting projects in AI, Web
+        Development, IoT,
+        Data Science & more </p>
+      <!-- Example Menu Button -->
+      <button class="btn btn-apply btn-primary" data-bs-toggle="modal" data-bs-target="#applyProjectModal">
+        Apply for a Project
+      </button>
+    </div>
+  </section>
+  <!-- Content -->
+  <div class="container my-5">
+    <h2 class="text-center mb-4">💡 Smart College Project Categories</h2>
+    <!-- Search Bar -->
+    <div class="text-center mb-5">
+      <input id="searchInput" type="text" class="form-control mx-auto"
+        placeholder="Search (e.g. AI, Machine Learning, Web Development)">
+    </div>
+    <div class="text-center mb-3" id="noResultMessage" style="display: none; color: red; font-weight: 600;">
+      ❌ No category found
+    </div>
+    <!-- Categories -->
+    <div class="row g-4" id="accordionCategories">
+      <!-- Category 1 -->
+      <div class="col-md-4 category" data-keywords="artificial intelligence ai ml machine learning neural networks">
+        <div class="category-card" data-bs-toggle="collapse" data-bs-target="#collapseAI"><img
+            src="assets/img/college-project/ai-ml.jpg" alt="AI" img-fluid>
+          <h5><i class="bi bi-cpu me-2"></i>Artificial Intelligence</h5>
+        </div>
+        <div id="collapseAI" class="collapse collapse-content" data-bs-parent="#accordionCategories">
+          <ul>
+            <li>AI Chatbots & Smart Assistants</li>
+            <li>Fake News Detection System</li>
+            <li>Emotion Recognition Model</li>
+            <li>Reinforcement Learning Agent</li>
+          </ul>
+          <hr>
+          <p class="mb-2 fw-semibold text-primary">Technologies we use in projects:</p>
+          <div class="tech-stack">
+            <span class="tech-btn python">Python</span>
+            <span class="tech-btn js">JavaScript</span>
+            <span class="tech-btn django">Django</span>
+            <span class="tech-btn bootstrap">Bootstrap</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 2 -->
+      <div class="col-md-4 category"
+        data-keywords="web development website frontend backend fullstack html css javascript react node">
+        <div class="category-card" data-bs-toggle="collapse" data-bs-target="#collapseWeb">
+          <img src="assets/img/college-project/Website-Development.png" alt="Web Development">
+          <h5><i class="bi bi-globe2 me-2"></i>Web Development</h5>
+        </div>
+        <div id="collapseWeb" class="collapse collapse-content" data-bs-parent="#accordionCategories">
+          <ul>
+            <li>E-Commerce Platform</li>
+            <li>Portfolio Website</li>
+            <li>Online Learning Web App</li>
+            <li>Blog CMS System</li>
+          </ul>
+          <div class="tech-stack">
+            <span class="tech-btn html">HTML</span>
+            <span class="tech-btn css">CSS</span>
+            <span class="tech-btn js">JavaScript</span>
+            <span class="tech-btn react">React</span>
+            <span class="tech-btn node">Node.js</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 3: Mobile App Development -->
+      <div class="col-md-4 category"
+        data-keywords="mobile app development android ios flutter react native kotlin swift">
+        <div class="category-card" data-bs-toggle="collapse" data-bs-target="#collapseMobile"><img
+            src="assets/img/college-project/mobile-development.png" alt="Mobile App">
+          <h5><i class="bi bi-phone me-2"></i>Mobile App Development</h5>
+        </div>
+        <div id="collapseMobile" class="collapse collapse-content" data-bs-parent="#accordionCategories">
+          <ul>
+            <li>Chat App</li>
+            <li>Fitness Tracker</li>
+            <li>Expense Manager</li>
+            <li>Location-Based Services App</li>
+          </ul>
+          <div class="tech-stack">
+            <span class="tech-btn flutter">Flutter</span>
+            <span class="tech-btn react">React Native</span>
+            <span class="tech-btn kotlin">Kotlin</span>
+            <span class="tech-btn swift">Swift</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 4: Data Science & Analytics -->
+      <div class="col-md-4 category" data-keywords="data science analytics machine learning python r pandas numpy">
+        <div class="category-card" data-bs-toggle="collapse" data-bs-target="#collapseData"><img
+            src="assets/img/college-project/data-science.jpeg" alt="Data Science">
+          <h5><i class="bi bi-bar-chart-line me-2"></i>Data Science & Analytics</h5>
+        </div>
+        <div id="collapseData" class="collapse collapse-content" data-bs-parent="#accordionCategories">
+          <ul>
+            <li>Sales Forecasting</li>
+            <li>Customer Segmentation</li>
+            <li>Stock Market Prediction</li>
+            <li>Sentiment Analysis</li>
+          </ul>
+          <div class="tech-stack">
+            <span class="tech-btn python">Python</span>
+            <span class="tech-btn r">R</span>
+            <span class="tech-btn pandas">Pandas</span>
+            <span class="tech-btn numpy">NumPy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 5: Internet of Things (IoT) -->
+      <div class="col-md-4 category" data-keywords="iot internet of things raspberry pi arduino sensors smart home">
+        <div class="category-card" data-bs-toggle="collapse" data-bs-target="#collapseIoT"><img
+            src="assets/img/college-project/iot.png" alt="IoT">
+          <h5><i class="bi bi-wifi me-2"></i>Internet of Things (IoT)</h5>
+        </div>
+        <div id="collapseIoT" class="collapse collapse-content" data-bs-parent="#accordionCategories">
+          <ul>
+            <li>Smart Home Automation</li>
+            <li>Temperature & Humidity Monitoring</li>
+            <li>IoT-Based Security System</li>
+            <li>Smart Agriculture System</li>
+          </ul>
+          <div class="tech-stack">
+            <span class="tech-btn arduino">Arduino</span>
+            <span class="tech-btn raspberrypi">Raspberry Pi</span>
+            <span class="tech-btn python">Python</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 6: Cybersecurity -->
+      <div class="col-md-4 category" data-keywords="cybersecurity ethical hacking network security penetration testing">
+        <div class="category-card" data-bs-toggle="collapse" data-bs-target="#collapseCyber"><img
+            src="assets/img/college-project/cyber-security.png" alt="Cybersecurity">
+          <h5><i class="bi bi-shield-lock me-2"></i>Cybersecurity</h5>
+        </div>
+        <div id="collapseCyber" class="collapse collapse-content" data-bs-parent="#accordionCategories">
+          <ul>
+            <li>Secure Login Systems</li>
+            <li>Penetration Testing Lab</li>
+            <li>Network Vulnerability Scanner</li>
+            <li>Data Encryption & Decryption Tool</li>
+          </ul>
+          <div class="tech-stack">
+            <span class="tech-btn python">Python</span>
+            <span class="tech-btn linux">Kali Linux</span>
+            <span class="tech-btn networking">Networking</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 7: Game Development -->
+      <div class="col-md-4 category" data-keywords="game development unity unreal-engine c# gamemaker 2d 3d">
+        <div class="category-card" data-bs-toggle="collapse" data-bs-target="#collapseGame"><img
+            src="assets/img/college-project/gane.png" alt="Game Development">
+          <h5><i class="bi bi-controller me-2"></i>Game Development</h5>
+        </div>
+        <div id="collapseGame" class="collapse collapse-content" data-bs-parent="#accordionCategories">
+          <ul>
+            <li>2D Platformer Game</li>
+            <li>3D Adventure Game</li>
+            <li>VR Experience Game</li>
+            <li>Multiplayer Online Game</li>
+          </ul>
+          <div class="tech-stack">
+            <span class="tech-btn unity">Unity</span>
+            <span class="tech-btn unreal-engine">Unreal Engine</span>
+            <span class="tech-btn csharp">C#</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 8: Robotics -->
+      <div class="col-md-4 category" data-keywords="robotics automation mechanical engineering sensors actuators">
+        <div class="category-card" data-bs-toggle="collapse" data-bs-target="#collapseRobotics"><img
+            src="assets/img/college-project/robotics.jpg" alt="Robotics">
+          <h5><i class="bi bi-robot me-2"></i>Robotics</h5>
+        </div>
+        <div id="collapseRobotics" class="collapse collapse-content" data-bs-parent="#accordionCategories">
+          <ul>
+            <li>Line Following Robot</li>
+            <li>Obstacle Avoidance Robot</li>
+            <li>Robotic Arm Automation</li>
+            <li>Maze Solving Robot</li>
+          </ul>
+          <div class="tech-stack">
+            <span class="tech-btn arduino">Arduino</span>
+            <span class="tech-btn sensors">Sensors</span>
+            <span class="tech-btn raspberrypi">Raspberry Pi</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 9: Blockchain -->
+      <div class="col-md-4 category"
+        data-keywords="blockchain cryptocurrency ethereum bitcoin solidity smart contracts">
+        <div class="category-card" data-bs-toggle="collapse" data-bs-target="#collapseBlockchain"><img
+            src="assets/img/college-project/block-chain.png" alt="Blockchain">
+          <h5><i class="bi bi-blockchain me-2"></i>Blockchain</h5>
+        </div>
+        <div id="collapseBlockchain" class="collapse collapse-content" data-bs-parent="#accordionCategories">
+          <ul>
+            <li>Cryptocurrency Wallet</li>
+            <li>Smart Contract Deployment</li>
+            <li>Decentralized Voting System</li>
+            <li>Supply Chain Blockchain App</li>
+          </ul>
+          <div class="tech-stack">
+            <span class="tech-btn solidity">Solidity</span>
+            <span class="tech-btn ethereum">Ethereum</span>
+            <span class="tech-btn js">JavaScript</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 10: Cloud Computing -->
+      <div class="col-md-4 category" data-keywords="cloud computing aws azure gcp serverless devops docker kubernetes">
+        <div class="category-card" data-bs-toggle="collapse" data-bs-target="#collapseCloud"><img
+            src="assets/img/college-project/cloud-computing.png" alt="Cloud Computing">
+          <h5><i class="bi bi-cloud-upload me-2"></i>Cloud Computing</h5>
+        </div>
+        <div id="collapseCloud" class="collapse collapse-content" data-bs-parent="#accordionCategories">
+          <ul>
+            <li>Serverless Web App</li>
+            <li>DevOps CI/CD Pipeline</li>
+            <li>Cloud-Based Storage System</li>
+            <li>Multi-Cloud Monitoring Tool</li>
+          </ul>
+          <div class="tech-stack">
+            <span class="tech-btn aws">AWS</span>
+            <span class="tech-btn azure">Azure</span>
+            <span class="tech-btn gcp">GCP</span>
+            <span class="tech-btn docker">Docker</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Bar Filter Script -->
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const categories = document.querySelectorAll('.category');
+    const noResultMessage = document.getElementById('noResultMessage');
+
+    // Smart synonyms
+    const synonyms = {
+      ai: ['artificial intelligence', 'machine learning', 'ml', 'neural network'],
+      ml: ['machine learning', 'artificial intelligence', 'ai', 'ml'],
+      ds: ['data science', 'analysis', 'python', 'statistics'],
+      web: ['web development', 'frontend', 'backend', 'website', 'react'],
+      iot: ['internet of things', 'automation', 'embedded systems']
+    }
+
+      ;
+
+    // Smart Search Functionality
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.trim().toLowerCase();
+      let anyVisible = false;
+
+      categories.forEach(category => {
+        const keywords = category.getAttribute('data-keywords');
+        let match = keywords.includes(query);
+
+        // Check synonyms
+        if (!match && synonyms[query]) {
+          synonyms[query].forEach(word => {
+            if (keywords.includes(word)) match = true;
+          });
+        }
+
+        category.style.display = match || query === '' ? '' : 'none';
+
+        if (match || query === '') anyVisible = true;
+      });
+
+      // Show/hide "No category found" message
+      noResultMessage.style.display = anyVisible ? 'none' : 'block';
+
+      // Close open collapses when searching
+      document.querySelectorAll('.collapse.show').forEach(openItem => {
+        bootstrap.Collapse.getInstance(openItem)?.hide();
+      });
+    });
+
+
+  </script>
+
+  <!--footer-->
+  <script type="text/javascript" src="footer.js"></script>
+  <!--footer end-->
+
+  <div id="modalContainer"></div>
+
+  <script>
+    fetch('modals.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('modalContainer').innerHTML = html;
+        initCollegeProjectModal();
+        initProjectForm();
+        const openBtn = document.getElementById("openCollegeProjects");
+        const collegeModalEl = document.getElementById("collegeProjectsModal");
+        if (openBtn && collegeModalEl) {
+          const collegeModal = new bootstrap.Modal(collegeModalEl);
+          openBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            collegeModal.show();
+          });
+        }
+      });
+  </script>
+
+  <script src="modal.js"></script>
+
+
+</body>
+
+</html>

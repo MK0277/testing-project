@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Submitted Data</title>
+
+  <style>
+    body {
+      font-family: Poppins, sans-serif;
+      background: #eef3fa;
+      padding: 25px;
+    }
+
+    .back-btn {
+      background: #007bff;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    th,
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #dce4f1;
+      text-align: left;
+    }
+
+    th {
+      background: #007bff;
+      color: white;
+    }
+
+    tr:hover {
+      background: #f2f8ff;
+    }
+
+    .del-btn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .refresh-btn {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+<body>
+
+  <a class="back-btn" href="projects.html">⬅ Back to Form</a>
+  <button class="refresh-btn" onclick="loadData()">Refresh</button>
+
+  <h2>All Submitted Records</h2>
+
+  <table id="submittedTable" aria-live="polite">
+    <thead>
+      <tr>
+        <th>Domain</th>
+        <th>Course</th>
+        <th>Notes File</th>
+        <th>Syllabus File</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwtoXsYftk1qru0QoPdoTu0x76INdTQXDhuer-bnsDYtHrG-fcqRf0Qpil9hVqUyBTFUQ/exec";
+
+    async function loadData() {
+      try {
+        const res = await fetch(WEB_APP_URL);
+        const data = await res.json();
+
+        const tbody = document.querySelector("#submittedTable tbody");
+        tbody.innerHTML = "";
+
+        if (!Array.isArray(data) || data.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;padding:18px">No records found</td></tr>`;
+          return;
+        }
+
+        data.forEach(row => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+          <td>${escapeHtml(row.domain)}</td>
+          <td>${escapeHtml(row.course)}</td>
+          <td>${escapeHtml(row.notes)}</td>
+          <td>${escapeHtml(row.syllabus)}</td>
+          <td>
+            <button class="pdf-btn" onclick="downloadPDF('${escapeHtml(row.domain)}', '${escapeHtml(row.course)}', '${escapeHtml(row.notes)}', '${escapeHtml(row.syllabus)}')">Download PDF</button>
+            <button class="del-btn" onclick="confirmDelete('${row.id}')">Delete</button>
+          </td>
+        `;
+          tbody.appendChild(tr);
+        });
+      } catch (err) {
+        console.error(err);
+        Swal.fire({ title: "Load failed", text: err.message, icon: "error" });
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str && str !== 0) return "";
+      return String(str).replace(/[&<>"'`=\/]/g, function (s) {
+        return ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+          '/': '&#x2F;', '`': '&#x60;', '=': '&#x3D;'
+        })[s];
+      });
+    }
+
+    function confirmDelete(id) {
+      Swal.fire({
+        title: 'Delete this row?',
+        text: "This will permanently remove the record from the Google Sheet.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it'
+      }).then(result => {
+        if (result.isConfirmed) deleteRow(id);
+      });
+    }
+
+    async function deleteRow(id) {
+      try {
+        const res = await fetch(WEB_APP_URL + '?action=delete&id=' + encodeURIComponent(id));
+        const json = await res.json();
+        if (json && json.status === 'deleted') {
+          Swal.fire({ title: 'Deleted!', icon: 'success', timer: 1200, showConfirmButton: false });
+          loadData();
+        } else {
+          Swal.fire({ title: 'Error', text: JSON.stringify(json), icon: 'error' });
+        }
+      } catch (err) {
+        Swal.fire({ title: 'Delete failed', text: err.message, icon: 'error' });
+        console.error(err);
+      }
+    }
+
+    // ✅ DOWNLOAD PDF FUNCTION
+    async function downloadPDF(domain, course, notes, syllabus) {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(18);
+      doc.text("Course Submission Details", 20, 20);
+
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(12);
+      doc.text(`Domain: ${domain}`, 20, 40);
+      doc.text(`Course: ${course}`, 20, 50);
+      doc.text(`Notes File: ${notes}`, 20, 60);
+      doc.text(`Syllabus File: ${syllabus}`, 20, 70);
+
+      doc.save(`${course.replace(/\s+/g, '_')}_details.pdf`);
+    }
+
+    loadData();
+  </script>
+  <style>
+    .pdf-btn {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      margin-right: 5px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .pdf-btn:hover {
+      background-color: #218838;
+    }
+
+    .del-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .del-btn:hover {
+      background-color: #c82333;
+    }
+  </style>
+
+</body>
+
+</html>

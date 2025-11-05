@@ -1,0 +1,260 @@
+<!-- ✅ 1️⃣ College Project Main Modal -->
+<div class="modal fade" id="collegeProjectsModal" tabindex="-1" aria-labelledby="collegeProjectsLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="collegeProjectsLabel">College Project Opportunities</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          A1 Training Institute offers an extensive list of
+          <strong>1000+ innovative college project ideas</strong> across multiple domains of IT.
+        </p>
+
+        <!-- Collapsible section -->
+        <div class="border rounded p-3 bg-light mt-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <h6 class="mb-0">💡 Available Domains</h6>
+            <a class="text-decoration-none" data-bs-toggle="collapse" href="#domainsCollapse" role="button"
+              aria-expanded="false" aria-controls="domainsCollapse">
+              <i class="bi bi-chevron-down fs-5"></i>
+            </a>
+          </div>
+          <div class="collapse mt-3" id="domainsCollapse">
+            <ul class="ms-3 mb-0">
+              <li>Artificial Intelligence & Machine Learning</li>
+              <li>Data Science & Big Data Analytics</li>
+              <li>Web & Mobile App Development</li>
+              <li>Cybersecurity & Blockchain</li>
+              <li>Internet of Things (IoT)</li>
+              <li>Cloud Computing & Distributed Systems</li>
+              <li>AR / VR & Robotics</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="mt-4">
+          Browse our categorized project lists, choose your area of interest, and start working on real-world problems
+          with expert mentorship.
+        </p>
+
+        <div class="text-center mt-4">
+          <button class="btn btn-primary" onclick="window.location.href='college-Projects.html'">View Project
+            List</button>
+
+          <!-- ✅ Button to open apply project modal -->
+          <!-- Button inside first modal -->
+          <button class="btn btn-apply btn-primary" data-bs-toggle="modal" data-bs-target="#applyProjectModal">
+            Apply for a Project
+          </button>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ 2️⃣ Apply Project Modal (with Subdomain + Project dynamic logic) -->
+<!-- <div class="modal fade" id="applyProjectModal" tabindex="-1" aria-labelledby="applyProjectModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="applyProjectModalLabel">Apply for a College Project</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="projectForm" class="needs-validation" novalidate>
+           
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="fullname" class="form-label">Full Name</label>
+              <input type="text" name="full_name" id="fullname" class="form-control" placeholder="Enter Name" required>
+            </div>
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+            </div>
+          </div>
+ 
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" id="phone" name="mobileno" placeholder="10-digit phone number"
+                pattern="[0-9]{10}" maxlength="10" required
+                oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10);">
+            </div>
+            <div class="col-md-6">
+              <label for="college" class="form-label">College Name</label>
+              <input type="text" class="form-control" id="college" name="college" placeholder="Enter college name"
+                required>
+            </div>
+          </div>
+ 
+          <div class="mb-3">
+            <label for="course" class="form-label">Course / Branch</label>
+            <input type="text" class="form-control" id="course" name="course" placeholder="e.g., B.Tech - CSE" required>
+          </div>
+ 
+          <div class="mb-3">
+            <label for="domain" class="form-label">Project Domain</label>
+            <select class="form-select" id="domain" name="domain" required>
+              <option value="">Choose...</option>
+              <option value="ai">Artificial Intelligence & ML</option>
+              <option value="data">Data Science & Big Data</option>
+              <option value="web">Web & Mobile Development</option>
+              <option value="cyber">Cybersecurity & Blockchain</option>
+              <option value="iot">Internet of Things (IoT)</option>
+              <option value="cloud">Cloud Computing & Distributed Systems</option>
+              <option value="arvr">AR, VR & Robotics</option>
+            </select>
+          </div>
+ 
+          <div class="mb-3 d-none" id="subDomainSection">
+            <label for="subDomain" class="form-label">Sub-Domain</label>
+            <select class="form-select" id="subDomain" name="subDomain" required>
+              <option value="">Choose sub-domain...</option>
+            </select>
+          </div>
+ 
+          <div class="mb-3 d-none" id="projectSection">
+            <label for="projectTitle" class="form-label">Project</label>
+            <select class="form-select" id="projectTitle" name="projectTitle" required>
+              <option value="">Choose project...</option>
+            </select>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary px-4">Submit Application</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- (College Project Enquiry Form  modal) -->
+<div class="modal fade" id="applyProjectModal" tabindex="-1" aria-labelledby="applyProjectModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="applyProjectModalLabel">Apply for a College Project</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="projectForm" class="needs-validation" novalidate>
+          <!-- Name & Email -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="fullname" class="form-label">Full Name</label>
+              <input type="text" name="full_name" id="fullname" class="form-control" placeholder="Enter Name" required>
+            </div>
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+            </div>
+          </div>
+
+          <!-- Phone & College -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" id="phone" name="mobileno" placeholder="10-digit phone number"
+                pattern="[0-9]{10}" maxlength="10" required
+                oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10);">
+            </div>
+            <div class="col-md-6">
+              <label for="college" class="form-label">College Name</label>
+              <input type="text" class="form-control" id="college" name="college" placeholder="Enter college name"
+                required>
+            </div>
+          </div>
+
+          <!-- Course -->
+          <div class="mb-3">
+            <label for="course" class="form-label">Course / Branch</label>
+            <input type="text" class="form-control" id="course" name="course" placeholder="e.g., B.Tech - CSE" required>
+          </div>
+
+          <!-- Domain -->
+          <div class="mb-3">
+            <label for="domain" class="form-label">Project Domain</label>
+            <select class="form-select" id="domain" name="domain" required>
+              <option value="">Choose...</option>
+              <option value="ai">Artificial Intelligence & ML</option>
+              <option value="data">Data Science & Big Data</option>
+              <option value="web">Web & Mobile Development</option>
+              <option value="cyber">Cybersecurity & Blockchain</option>
+              <option value="iot">Internet of Things (IoT)</option>
+              <option value="cloud">Cloud Computing & Distributed Systems</option>
+              <option value="arvr">AR, VR & Robotics</option>
+            </select>
+          </div>
+
+          <!-- Sub-Domain -->
+          <div class="mb-3 d-none" id="subDomainSection">
+            <label for="subDomain" class="form-label">Sub-Domain</label>
+            <select class="form-select" id="subDomain" name="subDomain" required>
+              <option value="">Choose sub-domain...</option>
+            </select>
+          </div>
+
+          <!-- Project -->
+          <div class="mb-3 d-none" id="projectSection">
+            <label for="projectTitle" class="form-label">Project</label>
+            <select class="form-select" id="projectTitle" name="projectTitle" required>
+              <option value="">Choose project...</option>
+            </select>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary px-4">Submit Application</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Course Download Modal -->
+<!-- Course List Modal -->
+<div class="modal fade" id="UploadModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header">
+        <h5 class="modal-title">Uploaded Courses</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="courseListBody">
+        <p class="text-center text-muted">No data available.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PDF List Modal -->
+<div class="modal fade" id="pdfListModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header">
+        <h5 class="modal-title" id="pdfListTitle">PDF Files</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="pdfListContainer">
+        <p class="text-center text-muted">No PDFs uploaded yet.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- ✅ Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- ✅ Move script include AFTER fetch setup -->
+<script src="modal.js"></script>
